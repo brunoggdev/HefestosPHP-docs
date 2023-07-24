@@ -4,6 +4,10 @@
     --color-lava-dim: #8a300f;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .text-lava {
     color: var(--color-lava-accent);
 }
