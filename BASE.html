@@ -1,83 +1,87 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HefestosPHP Docs</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-        --color-lava: #FF4500;
-        --color-lava: #B13A10;
-    }
-    
-    .text-lava{
-        color: var(--color-lava);
-    }
-  </style>
-  <script>
-    function toggleSubMenu(event) {
-      event.preventDefault();
-      const subMenu = event.target.nextElementSibling;
-      const icon = event.target.querySelector('svg');
-      subMenu.classList.toggle('hidden');
-      event.target.classList.toggle('bg-zinc-700');
-      icon.classList.toggle('rotate-180');
-    }
-  </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        :root {
+            --color-lava: #FF4500;
+            --color-lava: #B13A10;
+        }
+
+        .text-lava {
+            color: var(--color-lava);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-800 text-white">
-  <div class="flex h-screen">
-    <!-- Sidebar -->
-    <aside class="w-1/5 bg-zinc-900">
-      <nav class="p-4">
-        <h2 class="text-2xl font-semibold mb-4 text-lava text-center">HefestosPHP</h2>
-        <ul class="space-y-2">
-          <li class="border-b border-gray-700">
-            <a href="#" class="block px-4 py-2 rounded hover:bg-zinc-700">Introdução</a>
-          </li>
-          <li class="border-b border-gray-700">
-            <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-zinc-700" onclick="toggleSubMenu(event)">
-              Utilização Geral
-              <svg xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 ml-auto transition-transform duration-200 transform rotate-180" viewBox="0 0 20 20"
-                fill="currentColor">
-                <path fill-rule="evenodd"
-                  d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z" />
-              </svg>
-            </a>
-            <ul class="pl-4 space-y-2 hidden bg-zinc-700">
-              <li>
-                <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Button</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Card</a>
-              </li>
-            </ul>
-          </li>
-          <li class="border-b border-gray-700">
-            <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-zinc-700" onclick="toggleSubMenu(event)">
-              Detalhes
-              <svg xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4 ml-auto transition-transform duration-200 transform rotate-180" viewBox="0 0 20 20"
-                fill="currentColor">
-                <path fill-rule="evenodd"
-                  d="M5.293 7.293a1 1 0 0 1 1.414 0L10 10.586l3.293-3.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414z" />
-              </svg>
-            </a>
-            <ul class="pl-4 space-y-2 hidden bg-zinc-700">
-              <li>
-                <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Button</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 rounded hover:bg-gray-600">Card</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
+<body class="row container-fluid vh-100">
+    <aside class="col-2 border-end ms-1 h-100">
+        <nav class="d-flex justify-content-between flex-column h-100">
+            <div class="text-center row">
+                <h3 class="text-lava pt-5 pb-5 border-bottom">HefestosPHP</h3>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                aria-controls="flush-collapseOne">
+                                Accordion Item #1
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
+                                body.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                aria-controls="flush-collapseTwo">
+                                Accordion Item #2
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
+                                body. Let's imagine this being filled with some actual content.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                                Accordion Item #3
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse"
+                            aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion
+                                body. Nothing more exciting happening here in terms of content, but just filling up the
+                                space to make it look, at least at first glance, a bit more representative of how this
+                                would look in a real-world application.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top text-center text-wrap ">
+                <p>Correções, sugestões ou dúvidas?<span class="text-lava">brunoggdev@gmail.com</span></p>
+            </div>
+        </nav>
     </aside>
 
 
@@ -91,18 +95,29 @@
 
 
 
-    <!-- Main Content -->
-    <main class="flex-1 p-4 bg-zinc-800">
-      <header class="py-4">
-        <h1 class="text-2xl font-semibold text-lava">Introdução</h1>
-      </header>
-      <section class="prose">
-        <h2>Getting Started</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum vulputate dui, ac interdum
-          mauris iaculis et. Mauris sed lectus vitae risus pellentesque pulvinar.</p>
-      </section>
+
+
+    <main class="col-md-10">
+
     </main>
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
