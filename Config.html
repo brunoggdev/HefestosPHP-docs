@@ -27,27 +27,46 @@
             <p>
                 Na pasta Config temos os arquivos de configuração geral do sistema
             </p>
-            <ul class="mb-5">
-                <li><a href="#Constantes">Constantes</a></li>
-                <li><a href="#Database">Database</a></li>
-                <li><a href="#Filtros">Filtros</a></li>
-                <li><a href="#Rotas">Rotas</a></li>
+            <ul>
+                <li><a class="text-lava" style="text-decoration: none;" href="#Constantes">Constantes</a></li>
+                <li><a class="text-lava" style="text-decoration: none;" href="#Database">Database</a></li>
+                <li><a class="text-lava" style="text-decoration: none;" href="#Filtros">Filtros</a></li>
+                <li><a class="text-lava" style="text-decoration: none;" href="#Rotas">Rotas</a></li>
             </ul>
-            <section id="Constantes" class="pt-2">
+
+            <section id="Constantes" class="pt-5">
                 <h3>Constantes</h3>
-                <p></p>
+                <p class="p-3">
+                    Similarmente ao arquivo ".env" que você verá em projetos mais complexos, neste arquivo você irá definir 
+                    constantes que ficarão disponíveis em toda a sua aplicação e serão utilizadas pelo framework para 
+                    diversas configurações, então atenção nesses dados.
+                </p>
+                <ul>
+                    <li class="p-1"><strong>PASTA_RAIZ</strong> - A raiz do projeto, ou seja, onde estão locazilados os diretórios "app", "public" e "system", além dos demais arquivos.</li>
+                    <li class="p-1"><strong>AMBIENTE</strong> - Em ambiente de "desenvolvimento" todos os erros serão exibidos mas em "producao" os erros serão suprimidos.</li>
+                    <li class="p-1"><strong>URL_BASE</strong> - A url base do projeto, normalmente algo como "localhost:8080" em desenvolvimento ou "exemplo.com" em producao.</li>
+                    <li class="p-1"><strong>VERSAO_APP</strong> - Apenas indica a versão atual do app mas pode ser muito útil para coisas como "cache bursting" ou logs.</li>
+                </ul>
             </section>
-            <section id="Database" class="pt-2">
+
+
+            <section id="Database" class="pt-5">
                 <h3>Database</h3>
-                <p></p>
+                <p class="p-3">
+                    
+                </p>
             </section>
-            <section id="Filtros" class="pt-2">
+
+
+            <section id="Filtros" class="pt-5">
                 <h3>Filtros</h3>
-                <p></p>
+                <p class="p-3"></p>
             </section>
-            <section id="Rotas" class="pt-2">
+
+
+            <section id="Rotas" class="pt-5">
                 <h3>Rotas</h3>
-                <p></p>
+                <p class="p-3"></p>
             </section>
         </main>
 
