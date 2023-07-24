@@ -1,0 +1,24 @@
+:root {
+    --color-lava-accent: #B13A10;
+    --color-lava-accent: #ec3f00;
+    --color-lava-dim: #8a300f;
+}
+
+.text-lava {
+    color: var(--color-lava-accent);
+}
+
+.bg-lava{
+    color: #f0f0f0;
+    background-color: var(--color-lava-dim);
+}
+
+.col-custom-2-5 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.col-custom-9-5 {
+    flex: 0 0 80%;
+    max-width: 80%;
+}
