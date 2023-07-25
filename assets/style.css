@@ -22,6 +22,11 @@ html {
     max-width: 20%;
 }
 
+.col-custom-2-2 {
+    flex: 0 0 18.5%;
+    max-width: 18.5%;
+}
+
 .col-custom-9-5 {
     flex: 0 0 80%;
     max-width: 80%;
