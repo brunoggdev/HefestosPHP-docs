@@ -11,10 +11,12 @@ mybutton.onclick = topFunction
 mybutton.onmouseenter = function() {
     this.innerHTML = icon1
     this.onclick = topFunction
+    mybutton.addEventListener("touchstart", topFunction);
 }
 mybutton.onmouseleave = function() {
     this.innerHTML = icon2
     this.onclick = topFunction
+    mybutton.addEventListener("touchstart", topFunction);
 }
 // When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
@@ -30,5 +32,6 @@ function scrollFunction() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-    window.scrollTo(0, 0);
+    console.log('called')
+    document.querySelector('aside').scrollIntoView({block: "start"})
 }
