@@ -31,3 +31,7 @@ html {
     flex: 0 0 80%;
     max-width: 80%;
 }
+
+code{
+    color: var(--color-lava-accent);
+}

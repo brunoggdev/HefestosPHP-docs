@@ -68,12 +68,19 @@
 
             <section id="Filtros" class="pt-5">
                 <h3>Filtros</h3>
-                <p class="p-3">
-                    Neste arquivo você irá encontrar um array associativo que deverá ser utilizado para configurar 
-                    seus filtros. A chave do array é o nome do filtro que utilizará no seu arquivo de rotas e o 
-                    valor deve ser a classe (com namespace completo) que será utilizada nele. Caso deseje aplicar 
-                    dois filtros para um mesmo nome de filtro, informe um array com ambas as classes como valor dessa chave. 
-                </p>
+                <div class="p-3">
+                    <p>
+                        Neste arquivo você irá configurar seus filtros de rota. Filtros de rota são classes com um único método "<code>aplicar</code>" 
+                        no qual você define a lógica de cada filtro. 
+                    </p>
+                    <p>
+                        Para isso, é utilizado um array associativo onde cada chave do array é o nome do filtro que utilizado nas rotas e o valor deve ser a classe (com namespace completo) 
+                        que será utilizada nele.
+                    </p>
+                    <p>
+                        Para aplicar dois filtros em sequência para um mesmo nome de filtro basta informar um array com ambas as classes na ordem desejada. 
+                    </p>
+                </div>
                 <p class="lead fs-6 ps-3">Dica: Importe a classe normalmente com "use" e utilize nela o metodo "::class" que deverá retornar seu namespace completo apropriadamente.</p>
                 <div class="p-3">
                     <img src="./assets/img/config-filtros.png?v=0.3" class="img-fluid">
@@ -107,7 +114,6 @@
                     Note que se uma requisição "get" for feita para "uma-rota-post" ela não será reconhecida e receberá um 404 automaticamente.
                 </p>
                 <div class="p-3 mt-4">
-                    <!-- <p>A função de resposta deve sempre explicitamente retornar algo com "<code>return</code>", normalmente uma <a href="/Auxiliares.html#view">view()</a>, um <a href="/Auxiliares.html#json">json()</a> ou um <a href="/Auxiliares.html#redirecionar">redirecionar()</a>.</p> -->
                     Apesar de ser possível informar uma função para processar a requisicao diretamente no método como no exemplo acima para algo simples, 
                     normalmente você irá apenas apontar um método de um controller para processar à requisicao:
                 </div>
@@ -121,6 +127,32 @@
                 <div class="p-3 pt-1">
                     <img src="./assets/img/config-rotas-3.png?v=0.3" class="img-fluid">
                 </div>
+                <div class="p-3 mt-4">
+                    <p>
+                        Finalmente, você pode utilizar nas suas rotas os filtros mencionados no tópico anterior, também conhecidos como "middleware", 
+                        permitindo um maior controle elas para, por exemplo, filtrar rotas acessíveis apenas por usuários logados.
+                    </p>
+                    <p class="mt-2">
+                        Para tal, você utilizar o método "<code>filtro</code>" na rota desejada:
+                    </p>
+                    <div class="pt-1">
+                        <img src="./assets/img/config-rotas-4.png?v=0.3" class="img-fluid">
+                    </div>
+                    <p class="mt-5">
+                        Você pode ainda agrupar várias rotas sob um único filtro utilizando o método "<code>agrupar</code>" do objeto <code>$rotas</code>, 
+                        informando o nome do filtro desejado e uma função que deve utilizar o objeto <code>$rotas</code> para declarar as demais rotas:
+                    </p>
+                    <div class="pt-1">
+                        <img src="./assets/img/config-rotas-5.png?v=0.3" class="img-fluid">
+                    </div>
+                </div>
+                <p class="m-3 alert alert-light">
+                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg>
+                    Dica: <code>$rotas</code> também pode ser passado com a keyword "<code>use</code>" invés de parâmentro ( <code>, function() use($rotas) {</code> )
+                </p>
             </section>
         </main>
 

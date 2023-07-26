@@ -33,5 +33,5 @@ function scrollFunction() {
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
     console.log('called')
-    document.querySelector('aside').scrollIntoView({block: "start"})
+    document.querySelector('aside').scrollIntoView({block: "start", inline: "end"})
 }
