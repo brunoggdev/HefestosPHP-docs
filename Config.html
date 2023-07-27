@@ -21,10 +21,10 @@
 
         <main class="col-custom-9-5 p-5">
             <h2 class="mb-5 pb-4">Pasta Config</h2>
-            <p>
+            <p class="ps-3">
                 Na pasta Config temos os arquivos de configuração geral do sistema:
             </p>
-            <ul>
+            <ul class="ps-5">
                 <li><a class="text-lava" style="text-decoration: none;" href="#Constantes">Constantes</a></li>
                 <li><a class="text-lava" style="text-decoration: none;" href="#Database">Database</a></li>
                 <li><a class="text-lava" style="text-decoration: none;" href="#Filtros">Filtros</a></li>
@@ -32,7 +32,7 @@
             </ul>
 
             <section id="Constantes" class="pt-5">
-                <h3>Constantes</h3>
+                <h4>Constantes</h4>
                 <p class="p-3">
                     Similarmente ao arquivo ".env" que você verá em projetos mais complexos, neste arquivo você irá definir 
                     constantes que ficarão disponíveis em toda a sua aplicação e serão utilizadas pelo framework para 
@@ -48,7 +48,7 @@
 
 
             <section id="Database" class="pt-5">
-                <h3>Database</h3>
+                <h4>Database</h4>
                 <p class="p-3">
                     Neste arquivo você irá encontrar um array associativo onde deverão ser configuradas as informações 
                     de conexão com o banco de dados. Dois tipos de banco de dados relacional são suportados nativamente: mysql ou sqlite. 
@@ -67,7 +67,7 @@
 
 
             <section id="Filtros" class="pt-5">
-                <h3>Filtros</h3>
+                <h4>Filtros</h4>
                 <div class="p-3">
                     <p>
                         Neste arquivo você irá configurar seus filtros de rota. Filtros de rota são classes com um único método "<code>aplicar</code>" 
@@ -93,7 +93,7 @@
 
 
             <section id="Rotas" class="pt-5">
-                <h3>Rotas</h3>
+                <h4>Rotas</h4>
                 <div class="p-3">
                     <p>
                         Neste arquivo é instanciado o objeto "<code>$rotas</code>" que possui métodos para configurar as rotas da sua aplicação.
@@ -122,7 +122,7 @@
                 </div>
                 <div class="p-3 mt-4">
                     Você pode fazer uso de "cartas coringa" ou "wildcards", que são parametros de url que podem variar, 
-                    utilizando "<code>{param}</code>" depois ou entre as "/" da url, e o valor recebido será passado para a função de resposta:
+                    utilizando "<code>{param}</code>" depois ou entre as barras (/) da url, e os valores recebidos poderão ser recebidos respectivamente como argumentos pela função de resposta:
                 </div>
                 <div class="p-3 pt-1">
                     <img src="./assets/img/config-rotas-3.png?v=0.3" class="img-fluid">
