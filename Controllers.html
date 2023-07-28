@@ -15,32 +15,119 @@
 <body>
     <div class="row container-fluid min-vh-100">
         <aside class="col-custom-2-5  border-end ps-1">
-            
+
         </aside>
 
 
         <main class="col-custom-9-5 p-5">
-            <h2 class="mb-5 pb-4">Controllers</h2>
-            <section class="p-3">
+            <h2 class="mb-5">Pasta Controllers</h2>
+            <div class="p-3">
+            <section class="ps-3">
                 <p>
-                    É na pasta Controllers que ficarão todos os seus controllers, ou seja, as classes responsáveis por 
+                    É na pasta Controllers que ficarão todos os seus controllers, ou seja, as classes responsáveis por
                     coordenar as repostas às requisicoes.
                 </p>
                 <p>
-                    Por exemplo, comumente o seu controller vai acessar o seu banco de dados através de uma 
+                    Por exemplo, comumente o seu controller vai acessar o seu banco de dados através de uma
                     <a href="/Models.html">model</a> e então retornar esses dados como um json ou passa-los
-                    para uma <a href="/Views.html">view</a> que irá preencher o html a ser retornado para o usuário.
+                    para uma <a href="/Views.html">view</a> que irá preencher o html a ser retornado para o usuário. Aqui está uma visão geral:
                 </p>
-                <div class="mt-5">
+                <ul class="ps-4">
+                    <li><a class="link-lava" href="#Criando-um-Controller">Criando um Controller</a></li>
+                    <li><a class="link-lava" href="#Recebendo-dados-da-url">Recebendo dados da url</a></li>
+                    <li><a class="link-lava" href="#Acessando-parâmetros-get-e-pos">Acessando parâmetros get e post</a></li>
+                    <li><a class="link-lava" href="#Retornando-uma-resposta">Retornando uma resposta</a></li>
+                </ul>
+            </section>
+            <section class="pt-5" id="Criando-um-Controller">
+                <h4>Criando um Controller</h4>
+                <div class="p-3">
                     <p>
-                        Neste arquivo você irá configurar seus filtros de rota. Filtros de rota são classes com um único método "<code>aplicar</code>" 
-                        no qual você define a lógica de cada filtro. 
+                        Você pode usar a <a href="/Forja.html">forja</a> para criar um controller, basta utilizar o
+                        comando "criar"
+                        seguido do tipo de arquivo desejado (controller) e o nome do controller desejado. Por exemplo,
+                        com o comando:
                     </p>
-                </div>
-                <div>
-                    <img src="./assets/img/config-filtros.png?v=0.3" class="img-fluid">
+                    <p class="alert alert-dark mt-4 mb-4">
+                        php forja criar controller UsuariosController
+                    </p>
+                    <p>
+                        O seguinte arquivo UsuariosController.php será criado na pasta Controllers:
+                    </p>
+                    <div>
+                        <img src="./assets/img/controllers-1.png?v=0.3" class="img-fluid">
+                    </div>
                 </div>
             </section>
+            <section class="pt-5" id="Recebendo-dados-da-url">
+                <h4>Recebendo dados da url</h4>
+                <div class="p-3">
+                    <p>
+                        Para acessar as variáveis recebidas diretamente na url da rota através das "wildcards" basta
+                        declarar seu método de modo a esperar o mesmo número de parâmetros que "wildcards" na rota. Por
+                        exemplo:
+                    </p>
+                    <div>
+                        <img src="./assets/img/controllers-2.png?v=0.3" class="img-fluid">
+                    </div>
+                </div>
+            </section>
+            <section class="pt-5" id="Acessando-parâmetros-get-e-pos">
+                <h4>Acessando parâmetros get e post</h4>
+                <div class="p-3">
+                    <p>
+                        Comumente você precisará receber dados enviados por parâmetros "get" ou "post" e, para tal,
+                        basta utilizar os métodos <code>dadosGet</code> ou <code>dadosPost</code> respectivamente,
+                        herdados do
+                        ControllerBase.
+                    </p>
+                    <p>
+                        Estes métodos promovem uma maneira limpa e conveniente de acessar um array associativo padrão do
+                        PHP
+                        para recuperar os dados recebidos e, por padrão, higieniza-los para maior segurança do sistema.
+                    </p>
+                    <p>
+                        Ambos os métodos funcionam da mesma forma, sendo a única diferença o array de dados que acessam.
+                        Eles aceitam dois parâmetros: uma string ou array com os
+                        dados desejados; Um booleano indicando a higienização que, por padrão, é true.
+                    </p>
+                    <pre><p class="alert alert-dark">[
+   'id' => '03',
+   'apelido' => 'silva',
+   'comentario' => &gt; "&lt;script&gt; alert('script malicioso haha!') &lt;/script&gt;"
+]</p></pre>
+                    <p>
+                        Desse modo, no método do seu controller você pode usar:
+                    </p>
+                    <div>
+                        <img src="./assets/img/controllers-3.png" class="img-fluid">
+                    </div>
+                    <p class="mt-5">
+                        Porém, como dito anteriormente, os dados são retornados higienizados por padrão para maior
+                        segurança,
+                        assim removendo quaisquer tags que alguém mal intencionado tente inserir e, nesse caso,
+                        impedindo a interpretação do javascript:
+                    </p>
+                    <div>
+                        <img src="./assets/img/controllers-3.png" class="img-fluid">
+                    </div>
+                </div>
+            </section>
+            <section class="pt-5" id="Retornando-uma-resposta">
+                <h4>Retornando uma resposta</h4>
+                <div class="p-3">
+                    <p>
+                        Comumente você precisará receber dados enviados por parâmetros "get" ou "post" e, para tal,
+                        basta utilizar os métodos <code>dadosGet</code> ou <code>dadosPost</code> respectivamente,
+                        herdados do
+                        ControllerBase.
+                    </p>
+                    <div>
+                        <img src="./assets/img/controllers-3.png" class="img-fluid">
+                    </div>
+                </div>
+            </section>
+        </div>
         </main>
 
     </div>
