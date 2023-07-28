@@ -82,14 +82,13 @@
                         ControllerBase.
                     </p>
                     <p>
-                        Estes métodos promovem uma maneira limpa e conveniente de acessar um array associativo padrão do
-                        PHP
-                        para recuperar os dados recebidos e, por padrão, higieniza-los para maior segurança do sistema.
+                        Estes métodos fornecem uma maneira limpa e conveniente de acessar um array associativo padrão do
+                        PHP para recuperar os dados recebidos e os higieniza para maior segurança do sistema.
                     </p>
                     <p>
                         Ambos os métodos funcionam da mesma forma, sendo a única diferença o array de dados que acessam.
-                        Eles aceitam dois parâmetros: uma string ou array com os
-                        dados desejados; Um booleano indicando a higienização que, por padrão, é true.
+                        Eles aceitam dois parâmetros: uma string ou array com os dados desejados e um booleano indicando a 
+                        higienização que, por padrão, é true.
                     </p>
                     <pre><p class="alert alert-dark">[
    'id' => '03',
@@ -100,16 +99,15 @@
                         Desse modo, no método do seu controller você pode usar:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-3.png" class="img-fluid">
+                        <img src="./assets/img/controllers-3.png?v=0.3" class="img-fluid">
                     </div>
                     <p class="mt-5">
-                        Porém, como dito anteriormente, os dados são retornados higienizados por padrão para maior
-                        segurança,
+                        Porém, como dito anteriormente, os dados são retornados higienizados por padrão para maior segurança,
                         assim removendo quaisquer tags que alguém mal intencionado tente inserir e, nesse caso,
                         impedindo a interpretação do javascript:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-3.png" class="img-fluid">
+                        <img src="./assets/img/controllers-4.png?v=0.3" class="img-fluid">
                     </div>
                 </div>
             </section>
@@ -117,10 +115,11 @@
                 <h4>Retornando uma resposta</h4>
                 <div class="p-3">
                     <p>
-                        Comumente você precisará receber dados enviados por parâmetros "get" ou "post" e, para tal,
-                        basta utilizar os métodos <code>dadosGet</code> ou <code>dadosPost</code> respectivamente,
-                        herdados do
-                        ControllerBase.
+                        Finalmente, talvez após recuperar alguns dados de uma <a href="/Models.html">model</a> ou uma API de terceiros, 
+                        você deve sempre retornar alguma coisa do método utilizando <code>return</code>.
+                    </p>
+                    <p>
+                        De um modo geral, você sempre irá retornar uma string, sejá ela um texto HTML ou um json, ou um <a href="/Auxiliares.html#redirecionar">redirecionar</a>
                     </p>
                     <div>
                         <img src="./assets/img/controllers-3.png" class="img-fluid">
