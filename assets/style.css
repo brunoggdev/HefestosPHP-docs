@@ -32,6 +32,19 @@ html {
     max-width: 80%;
 }
 
+.accordion-button:not(.collapsed){
+    background-color: #ffffff23;
+    color: #f0f0f0;
+}
+
+.link-lava{
+    text-decoration: none;
+    color: var(--color-lava-accent);
+}
+
 code{
     color: var(--color-lava-accent);
+    border: #f0f0f09a solid 1px;
+    padding: 2px 4px;
+    border-radius: 3px;
 }
