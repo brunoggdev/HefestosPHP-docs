@@ -20,15 +20,16 @@
 
 
         <main class="col-custom-9-5 p-5">
-            <h2 class="mb-5 pb-4">Pasta Config</h2>
+            <h2 class="mb-5">Pasta Config</h2>
+            <div class="p-3">
             <p class="ps-3">
                 Na pasta Config temos os arquivos de configuração geral do sistema:
             </p>
             <ul class="ps-5">
-                <li><a class="text-lava" style="text-decoration: none;" href="#Constantes">Constantes</a></li>
-                <li><a class="text-lava" style="text-decoration: none;" href="#Database">Database</a></li>
-                <li><a class="text-lava" style="text-decoration: none;" href="#Filtros">Filtros</a></li>
-                <li><a class="text-lava" style="text-decoration: none;" href="#Rotas">Rotas</a></li>
+                <li><a class="link-lava" href="#Constantes">Constantes</a></li>
+                <li><a class="link-lava" href="#Database">Database</a></li>
+                <li><a class="link-lava" href="#Filtros">Filtros</a></li>
+                <li><a class="link-lava" href="#Rotas">Rotas</a></li>
             </ul>
 
             <section id="Constantes" class="pt-5">
@@ -70,7 +71,7 @@
                 <h4>Filtros</h4>
                 <div class="p-3">
                     <p>
-                        Neste arquivo você irá configurar seus filtros de rota. Filtros de rota são classes com um único método "<code>aplicar</code>" 
+                        Neste arquivo você irá configurar seus filtros de rota. Filtros de rota são classes com um único método <code>aplicar</code> 
                         no qual você define a lógica de cada filtro. 
                     </p>
                     <p>
@@ -96,11 +97,11 @@
                 <h4>Rotas</h4>
                 <div class="p-3">
                     <p>
-                        Neste arquivo é instanciado o objeto "<code>$rotas</code>" que possui métodos para configurar as rotas da sua aplicação.
+                        Neste arquivo é instanciado o objeto <code>$rotas</code> que possui métodos para configurar as rotas da sua aplicação.
                     </p>
                     <p>
-                        Para configurar uma rota basta utilizar um dos metodos http disponíveis no objeto "<code>$rotas</code>" (get, post, put, patch e delete).
-                        Estes métodos recebem dois parametros: a url desejada e uma função responsável por processar a resposta, que deve sempre explicitamente retornar algo com "<code>return</code>".
+                        Para configurar uma rota basta utilizar um dos metodos http disponíveis no objeto <code>$rotas</code> (get, post, put, patch e delete).
+                        Estes métodos recebem dois parametros: a url desejada e uma função responsável por processar a resposta, que deve sempre explicitamente retornar algo com <code>return</code>.
                     </p>
                 </div>
                 <div class="p-3 pt-1">
@@ -122,7 +123,7 @@
                 </div>
                 <div class="p-3 mt-4">
                     Você pode fazer uso de "cartas coringa" ou "wildcards", que são parametros de url que podem variar, 
-                    utilizando "<code>{param}</code>" depois ou entre as barras (/) da url, e os valores recebidos poderão ser recebidos respectivamente como argumentos pela função de resposta:
+                    utilizando <code>{param}</code> depois ou entre as barras (/) da url, e os valores recebidos poderão ser recebidos respectivamente como argumentos pela função de resposta:
                 </div>
                 <div class="p-3 pt-1">
                     <img src="./assets/img/config-rotas-3.png?v=0.3" class="img-fluid">
@@ -133,13 +134,13 @@
                         permitindo um maior controle elas para, por exemplo, filtrar rotas acessíveis apenas por usuários logados.
                     </p>
                     <p class="mt-2">
-                        Para tal, você utilizar o método "<code>filtro</code>" na rota desejada:
+                        Para tal, você utilizar o método <code>filtro</code> na rota desejada:
                     </p>
                     <div class="pt-1">
                         <img src="./assets/img/config-rotas-4.png?v=0.3" class="img-fluid">
                     </div>
                     <p class="mt-5">
-                        Você pode ainda agrupar várias rotas sob um único filtro utilizando o método "<code>agrupar</code>" do objeto <code>$rotas</code>, 
+                        Você pode ainda agrupar várias rotas sob um único filtro utilizando o método <code>agrupar</code> do objeto <code>$rotas</code>, 
                         informando o nome do filtro desejado e uma função que deve utilizar o objeto <code>$rotas</code> para declarar as demais rotas:
                     </p>
                     <div class="pt-1">
@@ -151,9 +152,10 @@
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                     </svg>
-                    Dica: <code>$rotas</code> também pode ser passado com a keyword "<code>use</code>" invés de parâmentro ( <code>, function() use($rotas) {</code> )
+                    Dica: <code>$rotas</code> também pode ser passado com a keyword <code>use</code> invés de parâmentro ( <code>, function() use($rotas) {</code> )
                 </p>
             </section>
+        </div>
         </main>
 
     </div>
