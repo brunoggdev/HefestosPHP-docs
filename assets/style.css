@@ -4,6 +4,10 @@
     --color-lava-dim: #8a300f;
 }
 
+img{
+    border-radius: 5px;
+}
+
 html {
     scroll-behavior: smooth;
 }
