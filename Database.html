@@ -41,28 +41,78 @@
                         versionamento do sue projeto. Vejamos mais sobre elas:
                     </p>
                     <ul class="ps-4">
-                        <li><a class="link-lava" href="#Criando-um-Controller">Criando uma tabela</a></li>
-                        <li><a class="link-lava" href="#Recebendo-dados-da-url">Recebendo dados da url</a></li>
-                        <li><a class="link-lava" href="#Acessando-parâmetros-get-e-pos">Acessando parâmetros get e post</a></li>
-                        <li><a class="link-lava" href="#Retornando-uma-resposta">Retornando uma resposta</a></li>
+                        <li><a class="link-lava" href="#Criando-uma-tabela">Criando uma tabela</a></li>
+                        <li><a class="link-lava" href="#Utilizacao">Utilização</a></li>
+                        <!-- <li><a class="link-lava" href="#Migrando">Migrando</a></li> -->
                     </ul>
-                    <p>
-                        Cada tabela é representada por um arquivo php neste diretório, nomeado com a data de criação do arquivo e o nome da tabela.
-                        Para criar uma nova tabela você pode utilizar:
-                    </p>
-                    <p class="alert alert-dark mt-4 mb-4">
-                        php forja criar tabela exemplo
-                    </p>
-                    <p>
-                        Um arquivo como esse será criado na pasta de tabelas:
-                    </p>
-                    <div>
-                        <img src="./assets/img/database-1.png?v=0.3" class="img-fluid">
-                    </div>
-                    <p class="mt-5">
-                        Como descrito, este cada arquivo de tabela deve retornar
-                    </p>
                 </section>
+                    <section class="pt-5" id="Criando-uma-tabela">
+                        <h4>Criando uma tabela</h4>
+                        <div class="p-3">
+                            <p>
+                                Cada tabela é representada por um arquivo php no diretório tabelas, nomeado com a data de criação do arquivo e o nome da tabela.
+                                Para criar uma nova tabela você pode utilizar a forja:
+                            </p>
+                            <p class="alert alert-dark mt-4 mb-4">
+                                php forja criar tabela exemplo
+                            </p>
+                            <p>
+                                Um arquivo como esse será criado na pasta de tabelas:
+                            </p>
+                            <div>
+                                <img src="./assets/img/database-1.png?v=0.3" class="img-fluid">
+                            </div>
+                            <p class="mt-5">
+                                Cada arquivo de tabela deve explicitamente retornar (utilizando <code>return</code> ) a SQL para a criação 
+                                da tabela desejada, seja utilizando a classe <code>Tabela</code> ou mesmo uma string pura.
+                            </p>
+                        </div>
+                    </section>
+                    <section class="pt-5" id="Utilizacao">
+                        <h4>Utilização</h4>
+                        <div class="p-3">
+                            <p>
+                                Por padrão, os arquivos de tabela utilizam a classe <code>Tabela</code>, que promove uma interface 
+                                intuitiva para a criação de tabelas sem sair do seu editor, apenas fornecendo o nome da 
+                                tabela no construtor da classe e encadeando métodos.
+                            </p>
+                            <p>
+                                Cada método da classe adiciona um tipo de coluna na tabela, informando o nome da coluna e 
+                                detalhes opcionais. A única exceção é o metodo foreignKey, utilizado, claro, para configurar chaves estrangeiras. Por exemplo:
+                            </p>
+                            <div>
+                                <img src="./assets/img/database-2.png?v=0.3" class="img-fluid">
+                            </div>
+                            <p class="mt-5">
+                                Note que o nome do método indica o tipo de coluna que será criado, enquanto seu primeiro parâmetro 
+                                espera o nome da coluna. Por fim, o método <code>foreignKey</code>, que deve sempre vir ao final da 
+                                construção da tabela, indicando a chave estrangeira.
+                            </p>
+                            <p>
+                                Em contraste, como dito anteriormente, também é possível apenas informar a SQL pura para a criação da tabela 
+                                caso julgue necessário. O exemplo seguinte criaria a mesma exata tabela do exemplo anterior:
+                            </p>
+                            <div>
+                                <img src="./assets/img/database-3.png?v=0.3" class="img-fluid">
+                            </div>
+                            <p class="mt-5">
+                                Como aludido anteriormente, os arquivos de tabela são como as "migrations", 
+                                e por isso aderem a mesma terminologia em sua utilização. Desse modo, para inserir no banco de 
+                                dados as tabelas que criou basta utilizar o comando da forja:
+                            </p>
+                            <p class="alert alert-dark mt-4 mb-4">
+                                php forja migrar
+                            </p>
+                            <p>
+                                O comando irá inserir no seu banco de dados todas as tabelas presentes no seu diretório de tabelas, 
+                                mostrando quaisquer possíveis erros no terminal. 
+                                <!-- Caso deseje restaurar todas as tabelas e recria-las do zero use: 
+                            </p>
+                            <p class="alert alert-dark mt-4 mb-4">
+                                php forja migrar zero -->
+                            </p>
+                        </div>
+                    </section>
             </div>
         </main>
 
