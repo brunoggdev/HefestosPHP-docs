@@ -27,14 +27,53 @@
                         É na pasta Filtros que ficarão, bem, os seus filtros. São as classes que serão referênciadas no seu 
                         <a href="/Config.html#Filtros">arquivo de configuração de filtros</a>, sendo uma para cada filtro.
                     </p>
+                    <p>
+                        Estes filtros são como os conhecidos "middleware": uma camada de código que é executada antes que a requisição 
+                        seja de fato processada. Desse modo, você têm a oportunidade de fazer validações ou o que desejar antes 
+                        de o usuáio chegar ao seu recurso.
+                    </p>
                     <ul class="ps-4">
                         <li><a class="link-lava" href="#Criando-um-filtro">Criando um Filtro</a></li>
                         <li><a class="link-lava" href="#Utilizacao">Utilização</a></li>
-                        <!-- <li><a class="link-lava" href="#Migrando">Migrando</a></li> -->
                     </ul>
                 </section>
-                <section>
-
+                <section class="pt-5" id="Criando-um-filtro">
+                    <h4>Criando um Filtro</h4>
+                    <div class="p-3">
+                        <p>
+                            Para criar um novo filtro basta utilizar a forja:
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja criar filtro exemploFiltro
+                        </p>
+                        <p>
+                            Um novo arquivo com o nome desejado será criado em seu diretório de filtros:
+                        </p>
+                        <div>
+                            <img src="./assets/img/filtros-1.png" class="img-fluid">
+                        </div>
+                </section>
+                <section class="pt-5" id="Utilizacao">
+                    <h4>Utilização</h4>
+                    <div class="p-3">
+                        <p>
+                            Filtros devem sempre conter o método <code>aplicar</code>, que é utilizado pelo framework
+                            para de fato executar o filtro desejado antes da resposta da requisicao.
+                        </p>
+                        <p>
+                            Por exemplo, você pode criar um filtro para impedir usuários que já estão logados de acessarem 
+                            novamente a página de login e redireciona-los para sua página principal:
+                        </p>
+                        <div>
+                            <img src="./assets/img/filtros-2.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Ou um outro de rotas exclusivas para usuários logados, que caso contrário  irá redirecionar 
+                            para página de login, talvez com algum tipo de informação sobre o redirecionamento:
+                        </p>
+                        <div>
+                            <img src="./assets/img/filtros-3.png" class="img-fluid">
+                        </div>
                 </section>
             </div>
         </main>
