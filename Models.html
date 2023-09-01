@@ -71,29 +71,83 @@
                     <h4>Inserindo dados</h4>
                     <div class="p-3">
                         <p>
-                            Para inserir um novo dado no seu banco você deve utilizar o método <code>inset()</code>, 
+                            Para inserir um novo dado no seu banco você deve utilizar o método <code>insert()</code>, 
                             informando um array associativo onde a chave é o nome da coluna na tabela em questão e o valor é, 
                             bem, o valor a ser inserido na coluna. Por exemplo:
                         </p>
                         <div>
                             <img src="./assets/img/models-2.png" class="img-fluid">
                         </div>
+                    </div>
                 </section>
                 <section class="pt-5" id="busncando-dados">
                     <h4>Busncando dados</h4>
                     <div class="p-3">
                         <p>
-                            O método select() inicia a consulta no banco, podendo buscar colunas específicas informando um array opcional 
-                            ou todas por padrão. Este método irá retornar a instância da <a href="Database.html" class="text-lava">Database</a> 
-                            onde você poderá usar o método <code>todos()</code> para retornar todos os resultados ou <code>primeiro()</code> 
-                            para retornar, claro, apenas o primeiro resultado.
+                            Ao buscar dados do banco, as models irão retornar cada linha representada como um array (padrão) ou objeto. 
+                            <!-- Você pode alterar esse comportamento utilizando os métodos <code>comoObjeto()</code> e <code>comoArray()</code> 
+                            em cada operação ou configurando a propriedade <code>$retorno_padrão</code> para 'array' ou 'objeto'; -->
                         </p>
                         <p>
-                            Depois, utilize o método <code>primeiro()</code> para pegar apenas a primeira linha
+                            Para buscar apenas uma linha especifica utilize o método <code>buscar()</code> informando o id 
+                            da linha desejada. Opcionalmente, você pode informar uma coluna especifica para retornar diretamente 
+                            seu valor invés de um array.
                         </p>
                         <div>
-                            <img src="./assets/img/models-2.png" class="img-fluid">
+                            <img src="./assets/img/models-4.png" class="img-fluid">
                         </div>
+                        <p class="mt-5">
+                            O método <code>buscarTodos()</code> retorna um array com todos os resultados (linhas) da tabela, ou seja,  
+                            um array de arrays, cada um com todas as colunas ou apenas as especificadas:
+                        </p>
+                        <div>
+                            <img src="./assets/img/models-3.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Ambos os métodos citados são atalhos para interagir com os métodos <code>select()</code> e <code>where()</code>, que retornam a instância 
+                            da <a href="Database.html">Database</a> para encadear métodos e montar consultas mais dinâmicas. 
+                        </p>
+                        <p>
+                            O método <code>select()</code> pode receber um array informando as colunas desejadas no retorno e, caso não informado, 
+                            retornará todas. Nesse caso, o método where pode ser chamado diretamente e encadeado como desejar. Por exemplo:
+                        </p>
+                        <div>
+                            <img src="./assets/img/models-5.png" class="img-fluid">
+                        </div>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            É extremamente aconselhável que confira a <a href="Database.html">Database</a> para entender melhor como 
+                            o método <code>where()</code> funciona e quais outros métodos você pode utilizar para suas consultas!
+                        </p>
+                    </div>
+                </section>
+                <section class="pt-5" id="atualizando-dados">
+                    <h4>Atualizando dados</h4>
+                    <div class="p-3">
+                        <p>
+                            Para atualizar uma ou mais linhas existentes utilize o método <code>update()</code> que recebe dois parâmetros: 
+                            a condição do update e os dados a serem atualizados.
+                        </p>
+                        <p>
+                            A condição comumente é apenas o id da linha desejada. Para outro parâmentro basta informar 
+                            um array nos padrões do método <code>where()</code>. No segundo parâmetro, um array associativo indicando a coluna a ser 
+                            atualizada e seu novo valor:
+                        </p>
+                        <div>
+                            <img src="./assets/img/models-6.png" class="img-fluid">
+                        </div>
+                    </div>
+                </section>
+                <section class="pt-5" id="deletando-dados">
+                    <h4>Deletando dados</h4>
+                    <div class="p-3">
+                        <p>
+                            Similarmente, para deletar dados do banco, utilize o método <code>delete()</code> 
+                            informando o id da linha desejada ou um array nos padrões do método <code>where()</code>. Por exemplo:
+                        </p>
+                        <div>
+                            <img src="./assets/img/models-7.png" class="img-fluid">
+                        </div>
+                    </div>
                 </section>
             </div>
         </main>
