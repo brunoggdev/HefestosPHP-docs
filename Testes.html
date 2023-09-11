@@ -114,18 +114,19 @@
                             Confira <a href="/Ferramentas.html#Esperar">Esperar</a> para ver todos os métodos disponíveis.
                         </p>
                         <p>
-                            Ademais, como no exemplo anterior, as vezes você pode querer um mesmo valor disponível e compatilhado em vários testes. 
-                            Para isso, você tem a função <code>usar()</code> que recebe um único parâmetro, sendo ele um array associativo ou função.
+                            Ademais, as vezes você pode querer um mesmo valor disponível em vários testes. 
+                            Para isso, a função <code>usar()</code> recebe um array associativo para definir propriedades de classe (acessadas com $this) compartilhadas em todos os testes.
                         </p>
                         <p>
-                            No caso de um array associativo, a chave se tornará propriedade de classe (acessando com $this) e receberá o valor definido. 
-                            No caso de uma função, realize as operações desejadas e então retorne também um array associativo com o valor desejado:
+                            A chave do array associativo será o nome da propriedade que receberá qualquer valor atribuido. 
+                            Desse modo, Você pode informar um array associativo diretamente, por exemplo:
                         </p>
                         <div>
                             <img src="./assets/img/testes-5.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
-                            Desse modo, no exemplo dos testes anteriores, poderiamos fazer o seguinte e obteriamos o mesmo resultado:
+                            Ou ainda, caso deseje processar algo mais complexo antes e depois atribuir esse valor, 
+                            você pode informar uma função e retornar o array com a chave e valor desejados:
                         </p>
                         <div>
                             <img src="./assets/img/testes-6.png" class="img-fluid">
