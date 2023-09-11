@@ -20,7 +20,7 @@
 
 
         <main class="col-custom-9-5 p-5">
-            <h2 class="mb-5">Pasta Models</h2>
+            <h2 class="mb-5">Pasta Testes</h2>
             <div class="p-3">
                 <section class="ps-3">
                     <p>
@@ -33,13 +33,77 @@
                         focado em simplicidade e legibilidade dos testes.
                     </p>
                     <p>
-                        Você pode agrupar seus testes relacionados em arquivos e estes arquivos em pastas, 
-                        depois rodas todos os testes de uma vez, pastas especificas ou arquivos específicos.
+                        Você pode agrupar seus testes relacionados em arquivos e estes arquivos em pastas. 
+                        Depois, executar todos os testes de uma vez, pastas especificas ou arquivos específicos.
                     </p>
                     <ul class="ps-4">
                         <li><a class="link-lava" href="#escrevendo-testes">Escrevendo testes</a></li>
-                        <li><a class="link-lava" href="#inserindo-dados">Inserindo dados</a></li>
+                        <li><a class="link-lava" href="#executando-testes">Executando testes</a></li>
+                        <li><a class="link-lava" href="#testes-mais-completos">Testes mais completos</a></li>
                     </ul>
+                </section>
+                <section class="pt-5" id="escrevendo-testes">
+                    <h4>Escrevendo testes</h4>
+                    <div class="p-3">
+                        <p>
+                            Para escrever testes primeiro crie um arquivo neste diretório com o nome que desejar. 
+                            Aqui você terá acesso à mais três funções específicas de testes: <code>testar()</code>, <code>esperar()</code> e <code>usar()</code>.
+                        </p>
+                        <p>
+                            A função <code>testar()</code> adiciona seus testes na suíte de testes, recebendo como primeiro parâmetro uma descrição 
+                            do teste com até 75 caracteres e, como segundo parâmetro, uma função com o teste de fato.
+                        </p>
+                        <p>
+                            Nesta função você pode executar quaisquer rotinas que deseje testar, como conferir models, arquivos, APIs, etc. 
+                            O teste sempre irá passar a menos que esta função retorne falso, lance uma exceção ou ocorra um erro na execução. Por exemplo:
+                        </p>
+                        <div>
+                            <img src="./assets/img/testes-1.png" class="img-fluid">
+                        </div>
+                </section>
+                <section class="pt-5" id="executando-testes">
+                    <h4>Executando testes</h4>
+                    <div class="p-3">
+                        <p>
+                            Uma vez declarados os testes, você deve utilizar a forja para executa-los e os resultados serão exibidos no seu terminal:
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja testar
+                        </p>
+                        <div>
+                            <img src="./assets/img/testes-2.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
+                            Informe então o caminho da subpasta com os testes desejados ou mesmo um arquivo específico caso não deseje executar todos os testes:
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja testar subpasta
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja testar subpasta/testes_especificos.php
+                        </p>
+                    </div>
+                </section>
+                <section class="pt-5" id="testes-mais-completos">
+                    <h4>Testes mais completos</h4>
+                    <div class="p-3">
+                        <p>
+                            Claro, os exemplos acima são muito básicos e você irá precisar de testes mais completos e padronizados. 
+                            Para isso, o próximo passo é a função <code>esperar()</code>.
+                        </p>
+                        <p>
+                            Ela recebe um único parâmetro que pode ser qualquer coisa (string, array, objeto, etc.) 
+                            e retorna um objeto onde você pode encadear métodos para testar esse valor.
+                        </p>
+                        <div>
+                            <img src="./assets/img/testes-2.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
+                            Informe então o caminho da subpasta com os testes desejados ou mesmo um arquivo específico caso não deseje executar todos os testes:
+                        </p>
+                    </div>
                 </section>
             </div>
         </main>
