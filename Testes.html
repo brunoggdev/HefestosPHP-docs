@@ -90,19 +90,46 @@
                     <div class="p-3">
                         <p>
                             Claro, os exemplos acima são muito básicos e você irá precisar de testes mais completos e padronizados. 
-                            Para isso, o próximo passo é a função <code>esperar()</code>.
+                            Por isso, a função <code>esperar()</code> promove uma api intuitiva para ser utilizada em seus testes e torna-los mais organizados e legiveis.
                         </p>
                         <p>
                             Ela recebe um único parâmetro que pode ser qualquer coisa (string, array, objeto, etc.) 
-                            e retorna um objeto onde você pode encadear métodos para testar esse valor.
+                            e retorna um objeto onde você pode encadear métodos para testar esse valor. É mais fácil fazer que falar:
                         </p>
                         <div>
-                            <img src="./assets/img/testes-2.png" class="img-fluid">
+                            <img src="./assets/img/testes-3.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
-                            Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
-                            Informe então o caminho da subpasta com os testes desejados ou mesmo um arquivo específico caso não deseje executar todos os testes:
+                            Desse modo, você pode praticamente ler o teste e saber o que ele faz instantâneamente, 
+                            onde cada método chamado irá conferir algo "esperado" a respeito do valor informado e 
+                            lançar uma exceção específica em caso incoerente. Veja:
                         </p>
+                        <div>
+                            <img src="./assets/img/testes-4.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Como pode ver, o primeiro teste passa sem problemas mas o segundo, 
+                            apesar de passar em não ser nulo e em ser um número, 
+                            falha ao verificar que é um float e retorna esse erro específico. 
+                            Confira <a href="/Ferramentas.html#Esperar">Esperar</a> para ver todos os métodos disponíveis.
+                        </p>
+                        <p>
+                            Ademais, como no exemplo anterior, as vezes você pode querer um mesmo valor disponível e compatilhado em vários testes. 
+                            Para isso, você tem a função <code>usar()</code> que recebe um único parâmetro, sendo ele um array associativo ou função.
+                        </p>
+                        <p>
+                            No caso de um array associativo, a chave se tornará propriedade de classe (acessando com $this) e receberá o valor definido. 
+                            No caso de uma função, realize as operações desejadas e então retorne também um array associativo com o valor desejado:
+                        </p>
+                        <div>
+                            <img src="./assets/img/testes-5.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Desse modo, no exemplo dos testes anteriores, poderiamos fazer o seguinte e obteriamos o mesmo resultado:
+                        </p>
+                        <div>
+                            <img src="./assets/img/testes-6.png" class="img-fluid">
+                        </div>
                     </div>
                 </section>
             </div>
