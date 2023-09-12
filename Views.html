@@ -27,14 +27,44 @@
                         Nesta pasta fica de fato o seu conteúdo HTML. Cada arquivo aqui pode ser pensado como uma página do seu app e 
                         o PHP utilizado aqui deve ser apenas para preencher esta com o conteúdo necessário de maneira dinâmica.
                     </p>
+                    <p>
+                        Para isso, você pode utilizar condicionais, loops e variaveis normalmente e, ao utilizar a função <code>view()</code>, 
+                        esse código será processado e as variáveis inseridas adequadamente.
+                    </p>
                     <ul class="ps-4">
-                        <li><a class="link-lava" href="#escrevendo-testes">Escrevendo testes</a></li>
-                        <li><a class="link-lava" href="#executando-testes">Executando testes</a></li>
-                        <li><a class="link-lava" href="#testes-mais-completos">Testes mais completos</a></li>
+                        <li><a class="link-lava" href="#passando-dados-para-view">Passando dados para view</a></li>
+                        <li><a class="link-lava" href="#sintaxe-alternativa-do-PHP">Sintaxe alternativa do PHP</a></li>
+                        <li><a class="link-lava" href="#montando-uma-view">Montando uma view</a></li>
                     </ul>
                 </section>
+                <section class="pt-5" id="passando-dados-para-view">
+                    <h4>Passando dados para view</h4>
+                    <div class="p-3">
+                        <p>
+                            Uma view sempre deve ser acessada pela função <code>view()</code>, que aceita como primeiro parametro o nome da view desejada (<strong>sem</strong> a extensão .php) 
+                            e, opcionalmente, um array associativo de dados indicando as variaveis disponíveis na view.
+                        </p>
+                        <p>
+                            Nesse array, a chave será o nome da variável que poderá ser acessada na view com seu devido valor, sendo este de qualquer tipo (string, array, objeto, etc). 
+                            Por exemplo, normalmente você irá acessar no seu controller:
+                        </p>
+                        <div>
+                            <img src="./assets/img/views-1.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Note que, no fim, a função view apenas retorna uma string do seu conteúdo HTML. Isso quer dizer que todas as 
+                            operações com strings podem ser utilizadas com seu retorno, como concatenação. Confira esse exemplo interessante para uma <a href="Auxiliares.html">função auxiliar</a>.
+                        </p>
+                    </div>
+                </section>
+                <section class="pt-5" id="sintaxe-alternativa-do-PHP">
+                    <h4>Sintaxe alternativa do PHP</h4>
+                    <div class="p-3">
+                        Antes de mais nada, é importante apontar a sintaxe alternativa do PHP para views.
+                    </div>
+                </section>
                 <section class="pt-5" id="escrevendo-testes">
-                    <h4>Escrevendo testes</h4>
+                    <h4>Passando dados para view</h4>
                     <div class="p-3">
                     </div>
                 </section>
