@@ -92,10 +92,42 @@
                     <h4>Montando uma view</h4>
                     <div class="p-3">
                         <p>
-                            Desse modo, ao montar uma view você pode fazer algo como:
+                            Para montar uma view de forma dinâmica você pode fazer algo como:
                         </p>
                         <div>
                             <img src="./assets/img/views-4.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Note, porém, que é comum repetirmos código HTML em diversas partes das views, 
+                            principalmente o que chamamos de header e footer, então é comum separa-las em "componentes" para reduzir duplicação de código e facilitar manutenção.
+                        </p>
+                        <p>
+                            O conceito de componentes nada mais é do que extrair partes do código para um arquivo
+                            e adiciona-los dinamicamente onde necessário, fazendo com que você só precise fazer manutenção em um único arquivo invés de todos.
+                        </p>
+                        <p>
+                            Para isso, na pasta Views você encontrará uma outra pasta chamada componentes onde você poderá adicionar os que desejar, 
+                            não só os comuns header e footer mas botões, tabelas e listas ou mesmo seus itens. O que desejar.
+                        </p>
+                        <p>
+                            Depois, para utilizar os componentes, basta usar a função <code>componente()</code> (ou seu atalho <code>comp()</code>) 
+                            que funciona em conjunto com a <code>view()</code>, recebendo o nome do componente e, opcionalmente, dados a serem preenchidos nele.
+                        </p>
+                        <p>
+                            Também como uma view, um componente é retornado como uma string, permitindo quaisquer operações com ela como um "echo", daí sua utilização:
+                        </p>
+                        <div>
+                            <img src="./assets/img/views-5.png" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Desse modo, por exemplo, o titulo e menú no header serão compartilhados entre todos os arquivos que você o utilizar 
+                            e você só precisará fazer alterações em um único arquivo para ser refletido entre todos.
+                        </p>
+                        <p>
+                            Ainda nesse exemplo, caso quisesse um titulo dinâmico dependendo da view renderizada, poderia passar o titulo desejado para o componente header, algo como:
+                        </p>
+                        <div>
+                            <img src="./assets/img/views-6.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
                         </p>
