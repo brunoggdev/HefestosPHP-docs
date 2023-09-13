@@ -130,7 +130,29 @@
                             <img src="./assets/img/views-6.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
+                            Por fim, você possivelmente irá utilizar JavaScript. Pode declarar seu código js 
+                            diretamente numa view para ser exclusivo dela ou no footer para ter disponível em 
+                            todo seu app, provavelmente o caso para bibliotecas como Bootstrap ou jQuery.
                         </p>
+                        <p>
+                            Em cima disso, seu código js pode ser feito numa tag script, sim, mas por vezes você irá separar 
+                            isso em um arquivo .js próprio e então importa-lo na sua view específica ou footer, 
+                            porém isso requer alguns cuidados para funcionar corretamente.
+                        </p>
+                        <p>
+                            Ao importar JavaScript a ordem importa. Por exemplo, importar um arquivo que usa jQuery 
+                            antes de importar a biblioteca não irá funcionar. Além disso, cache também pode vir a ser um problema.
+                            A função <code>importarJS()</code> existe para auxiliar nessa tarefa.
+                        </p>
+                        <p>
+                            Ela irá buscar o arquivo informado na pasta 'public/js/' e, caso encontre, 
+                            retornará a string para importação do mesmo com
+                            <a href="https://www.2fconsultoria.com.br/2019/01/por-como-usar-cache-busting/">cache busting</a>.
+                           Além disso, passar 'true' no segundo parâmetro irá atrasar a interpretação desse script. Por exemplo:
+                        </p>
+                        <div>
+                            <img src="./assets/img/views-7.png" class="img-fluid">
+                        </div>
                     </div>
                 </section>
             </div>
