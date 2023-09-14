@@ -25,23 +25,38 @@
                 <section class="ps-3">
                     <p>
                         O HefestosPHP possui diversas funções auxiliares (que você pode conferir <a href="#">aqui</a>), 
-                        mas também te encoraja a criar suas próprias! Você pode criar as funções que desejar neste arquivo, 
-                        bem como definir constantes, e tudo estará disponível em todo seu app.
+                        mas também te encoraja a criar suas próprias! Você pode criar as funções e definir constantes 
+                        neste arquivo e tudo estará disponível em todo seu app.
+                    </p>
+                    <p>
+                        Por exemplo, você deve estar usando componentes header e footer para ter um layout das páginas, certo? 
+                        Podemos criar uma auxiliar para concatenar esses componentes à view desejada e 
+                        utiliza-la invés da função <code>view()</code> diretamente. Veja:
+                    </p>
+                    <div>
+                        <img src="./assets/img/auxiliares-1.png" class="img-fluid">
+                    </div>
+                    <p class="mt-5">
+                        Note que nossa auxiliar <code>layout()</code> recebe os mesmos argumentos da função <code>view()</code> 
+                        e apenas os repassa pra ela além de concatenar os componentes. Assim, em seus controllers, você pode substituir a função padrão de views pela sua própria.
                     </p>
                     <!-- <p>
-                        O HefestosPHP te incentiva a criar suas próprias funções auxiliares para 
-                        as tarefas específicas do seu app. Neste arquivo você pode declarar as funções que desejar, 
-                        bem como definir constantes, e tudo estará disponível em toda sua aplicação.
+                        Mas por que parar por aí? Talvez você queira que cada view tenha acesso a 
+                        um arquivo .js só dela e modais específicas pra ela? E quem sabe que o header receba um titulo igual o 
+                        nome da view mas com letra maiuscula? 
+                    </p> -->
+                    <!-- <p>
+                        Mas por que parar por aí? Você pode adotar uma convenção de nomear arquivos .js com o mesmo nome da view 
+                        em que será usado e o mesmo vale componentes com modais talvez com um prefixo "modais_".
                     </p> -->
                     <p>
-                        Por exemplo, você deve estar utilizando a estrutura de componentes header e footer, certo? 
-                        Podemos criar uma função auxiliar para concatenar esses componentes a view desejada e 
-                        utiliza-la no controller invés da função <code>view()</code> diretamente.
+                        Mas por que parar por aí? Você pode abstrair bastante código por trás dessas funções auxiliares para 
+                        automatizar tarefas e tornar seu código mais legível. Vamos analisar o seguinte exemplo:
                     </p>
-                    <p>
-                        Mas por que parar por aí? Talvez você queira que cada view tenha acesso à um arquivo .js 
-                        específico pra ela, e quem sabe até suas modais específicas? Podemos agrupar tudo isso numa única 
-                        função
+                    <div>
+                        <img src="./assets/img/auxiliares-2.png" class="img-fluid">
+                    </div>
+                    <p class="mt-5">
                     </p>
                     <ul class="ps-4">
                         <li><a class="link-lava" href="#passando-dados-para-view">Passando dados para view</a></li>
