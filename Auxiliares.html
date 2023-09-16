@@ -25,8 +25,8 @@
                 <section class="ps-3">
                     <p>
                         O HefestosPHP possui diversas funções auxiliares (que você pode conferir <a href="#">aqui</a>), 
-                        mas também te encoraja a criar suas próprias! Você pode criar as funções e definir constantes 
-                        neste arquivo e tudo estará disponível em todo seu app.
+                        mas também te encoraja a criar suas próprias! Você pode declarar as funções que desejar e até definir constantes 
+                        neste arquivo, tudo ficará disponível em todo seu app.
                     </p>
                     <p>
                         Por exemplo, você deve estar usando componentes header e footer para ter um layout das páginas, certo? 
@@ -34,51 +34,42 @@
                         utiliza-la invés da função <code>view()</code> diretamente. Veja:
                     </p>
                     <div>
-                        <img src="./assets/img/auxiliares-1.png" class="img-fluid">
+                        <img src="./assets/img/auxiliares-1.webp" class="img-fluid">
                     </div>
                     <p class="mt-5">
                         Note que nossa auxiliar <code>layout()</code> recebe os mesmos argumentos da função <code>view()</code> 
                         e apenas os repassa pra ela além de concatenar os componentes. Assim, em seus controllers, você pode substituir a função padrão de views pela sua própria.
                     </p>
-                    <!-- <p>
-                        Mas por que parar por aí? Talvez você queira que cada view tenha acesso a 
-                        um arquivo .js só dela e modais específicas pra ela? E quem sabe que o header receba um titulo igual o 
-                        nome da view mas com letra maiuscula? 
-                    </p> -->
-                    <!-- <p>
-                        Mas por que parar por aí? Você pode adotar uma convenção de nomear arquivos .js com o mesmo nome da view 
-                        em que será usado e o mesmo vale componentes com modais talvez com um prefixo "modais_".
-                    </p> -->
                     <p>
                         Mas por que parar por aí? Você pode abstrair bastante código por trás dessas funções auxiliares para 
                         automatizar tarefas e tornar seu código mais legível. Vamos analisar o seguinte exemplo:
                     </p>
                     <div>
-                        <img src="./assets/img/auxiliares-2.png" class="img-fluid">
+                        <img src="./assets/img/auxiliares-2.webp" class="img-fluid">
                     </div>
                     <p class="mt-5">
+                        Nesta função similar ao exemplo "layout" anterior, passamos para o header uma variável "titulo" 
+                        igual ao nome da view mas com a primeira letra maiúscula. Assim, poderemos ter páginas com o titulo também dinâmico igual ao da view carregada.
                     </p>
-                    <ul class="ps-4">
-                        <li><a class="link-lava" href="#passando-dados-para-view">Passando dados para view</a></li>
-                        <li><a class="link-lava" href="#sintaxe-alternativa-do-PHP">Sintaxe alternativa do PHP</a></li>
-                        <li><a class="link-lava" href="#montando-uma-view">Montando uma view</a></li>
-                    </ul>
-                </section>
-                <section class="pt-5" id="passando-dados-para-view">
-                    <h4>Passando dados para view</h4>
-                    <div class="p-3">
-                        <p>
-                            Uma view sempre deve ser acessada pela função <code>view()</code>, que aceita como primeiro parametro o nome da view desejada (<strong>sem</strong> a extensão .php) 
-                            e, opcionalmente, um array associativo de dados indicando as variaveis disponíveis na view.
-                        </p>
-                        <div>
-                            <img src="./assets/img/views-1.webp" class="img-fluid">
-                        </div>
-                        <p class="mt-5">
-                            Note que, no fim, a função view apenas retorna uma string do seu conteúdo HTML. Isso quer dizer que todas as 
-                            operações com strings podem ser utilizadas com seu retorno, como concatenação. Confira <a href="Auxiliares.html">Auxiliares</a> para um exemplo interessante.
-                        </p>
-                    </div>
+                    <p>
+                        Além disso, carregamos um componente com o prefixo "modais_" seguido do mesmo nome da view desejada. 
+                        Para isso, usamos a função <code>componente()</code> fazendo com que esse componente seja carregado 
+                        apenas se existir e que nada aconteça caso contrário.
+                    </p>
+                    <p>
+                        Utilizamos ainda a <code>importarJS()</code> para importar um arquivo .js de mesmo nome da 
+                        view caso exista, com "true" no segundo parâmentro para "defer" o script, 
+                        fazendo com que seja interpretado apenas quando todo o JavaScript da página for carregado.
+                    </p>
+                    <p>
+                        Por fim, como antes, concatenamos o footer. Visto que essa função monta toda a estrutura 
+                        da página, damos um nome mais explicito do que ela faz: <code>montarPagina()</code>.
+                    </p>
+                    <p >
+                        Desse modo, basta que você siga uma convenção consistente ao nomear suas views que 
+                        poderá montar páginas de forma bem dinâmica com uma única chamada de função, 
+                        tornando seu código mais prático, conciso e legível de forma declarativa. 
+                    </p>
                 </section>
             </div>
         </main>
