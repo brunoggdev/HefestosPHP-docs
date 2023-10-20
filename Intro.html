@@ -15,20 +15,91 @@
 <body>
     <div class="row container-fluid min-vh-100">
         <aside class="col-custom-2-5  border-end ps-1">
-            
+
         </aside>
 
 
         <main class="col-custom-9-5 p-5">
-            <h2 class="mb-5 pb-4">Introdução</h2>
-            <ul class="mb-5">
-                <li><a class="text-lava" style="text-decoration: none;" href="#Constantes">Ciclo de vida de uma requisição</a></li>
-            </ul>
-            <p>
-                A sessão "Utilização geral" no menu lateral está organizada de acordo com a estrutura de diretórios
-                do Framework, mais especificamente da pasta app, ou seja, cada item reflere nessa sessão do menu 
-                corresponde à uma pasta ou arquivo dentro da pasta app do framework, onde você fará a maior parte do sistema.
-            </p>
+            <h2 class="mb-5">Introdução</h2>
+            <div class="p-3">
+                <section class="ps-3">
+                    <p>
+                        HefestosPHP é um framework MVC desenvolvido com PHP moderno. Seu principal intuito
+                        é simplificar o desenvolvimento web com PHP para iniciantes, de modo a estruturar o código
+                        e reduzir a curva de aprendizado dos grande frameworks do mercado como Laravel, CodeIgniter ou
+                        Symphony.
+                    </p>
+                    <p>
+                        No entanto, por tratar de conceitos de desenvolvimento web de maneira generalista, permite que o
+                        conhecimento adquirido com seu uso seja facilmente reciclado também em qualquer outra linguagem
+                        com
+                        arquitetura similar.
+                    </p>
+                    <ul class="ps-4">
+                        <li><a class="link-lava" href="#instalacao-e-utilizacao">Instalação e utilização</a></li>
+                        <li><a class="link-lava" href="#ciclo-de-requisicao">Ciclo de vida de uma requisição</a></li>
+                    </ul>
+                </section>
+
+                <section class="pt-5" id="instalacao-e-utilizacao">
+                    <h4>Instalação e utilização</h4>
+                    <div class="p-3">
+                        <p>
+                            O framework pode ser obtido no <a
+                                href="https://github.com/brunoggdev/hefestosphp">repositório do github</a>.
+                            Você pode simplesmente baixar o arquivo zip ou ainda usar a funcionalidade de "template" do
+                            github para criar um clone em seu próprio repositório.
+                        </p>
+                        <p>
+                            Ademais, a sessão "Utilização geral" no menu lateral está organizada de acordo com a
+                            estrutura de diretórios
+                            do Framework, mais especificamente da pasta app.
+                            Isto é, cada item refletido nessa sessão do menu corresponde à uma pasta ou
+                            arquivo dentro da pasta app do framework, onde você fará a maior parte do sistema.
+                        </p>
+                        <p>
+                            No entanto, é recomendado que entenda antes como funciona o ciclo de
+                            vida de uma requisição no HefestosPHP, como exemplificado logo abaixo.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="pt-5" id="ciclo-de-requisicao">
+                    <h4>Ciclo de vida de uma requisição</h4>
+                    <div class="p-3">
+                        <p>
+                            Assim como em diversos frameworks, no PHP ou não, o ciclo de vida de uma requisição no
+                            HefestosPHP
+                            segue um padrão comum guiado pela arquitetura MVC:
+                        </p>
+                        <div>
+                            <img src="./assets/img/ciclo-de-requisicao.webp" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Um roteador é utilizado para decidir qual controller responderá à uma requisição
+                            específica, e middlewares podem ser utilizados para filtrar essas requisições antes de
+                            atingirem o controller, sendo úteis para tarefas como controle de acesso por login, entre
+                            outros.
+                        </p>
+                        <p>
+                            O controller, por sua vez, não precisa saber dos detalhes de como a model recupera as
+                            informações do banco de dados ou como a view implementa seu
+                            HTML.
+                        </p>
+                        <p>
+                            Já o acesso ao banco de dados é de responsabilidade única da model e esta não se preocupa
+                            com qual controller a invocou ou qual
+                            view receberá os seus dados. Além disso, é utilizado um query builder para realizar as
+                            consultas
+                            ao banco de dados de forma mais prática.
+                        </p>
+                        <p>
+                            Por fim, a view não se preocupa em saber de onde vêm os
+                            dados que necessita ou quem a invoca. Esta apenas organiza o HTML com os dados recebidos e
+                            devolve a resposta que será enviada ao cliente.
+                        </p>
+                    </div>
+                </section>
         </main>
 
     </div>
