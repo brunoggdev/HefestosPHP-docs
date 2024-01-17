@@ -20,62 +20,39 @@
 
 
         <main class="col-custom-9-5 p-5">
-            <h2 class="mb-5">Forja</h2>
+            <h2 class="mb-5">Classe Database</h2>
             <div class="p-3">
                 <section class="ps-3">
                     <p>
                         A forja é a ferramenta de interface de linha de comando (CLI) do HefestosPHP para interagir com o framework. 
-                        Ou seja, é uma ferramenta que deve ser acessada pelo terminal para realizar comandos que te auxiliam no desenvolvimento do seu aplicativo. 
+                        Ou seja, é uma ferramenta que deve ser acessada pela terminal para realizar comandos que te auxiliam no desenvolvimento do seu aplicativo. 
                         Esses comandos são: 
                     </p>
                     <ul class="ps-4">
-                        <li><a class="link-lava" href="#Iniciar">Iniciar</a></li>
-                        <li><a class="link-lava" href="#Criar">Criar</a></li>
-                        <li><a class="link-lava" href="#Migrar">Migrar</a></li>
-                        <li><a class="link-lava" href="#Testar">Testar</a></li>
-                        <li><a class="link-lava" href="#Fornalha">Fornalha</a></li>
+                        <li><a class="link-lava" href="#escrevendo-testes">Iniciar</a></li>
+                        <li><a class="link-lava" href="#executando-testes">Criar</a></li>
+                        <li><a class="link-lava" href="#executando-testes">Migrar</a></li>
+                        <li><a class="link-lava" href="#testes-mais-completos">Testar</a></li>
+                        <li><a class="link-lava" href="#testes-mais-completos">Fornalha</a></li>
                     </ul>
                 </section>
-                <section class="pt-5" id="Iniciar">
-                    <h4>Comando Iniciar</h4>
+                <section class="pt-5" id="escrevendo-testes">
+                    <h4>Escrevendo testes</h4>
                     <div class="p-3">
                         <p>
-                            Esse comando inicia o servidor de desenvolvimento do Hefestos, podendo ser acessado na url 'localhost:8080', 
-                            onde 8080 é o valor padrão da <a href="https://www.cloudflare.com/pt-br/learning/network-layer/what-is-a-computer-port/#:~:text=As%20portas%20s%C3%A3o%20locais%20virtuais,de%20rede%20come%C3%A7am%20e%20terminam." target="_blank">
-                            porta</a>, esta que pode ser configurada informando um valor opcional. Por exemplo:
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar 8081
+                            Para escrever testes primeiro crie um arquivo neste diretório com o nome que desejar. 
+                            Aqui você terá acesso à mais três funções específicas de testes: <code>testar()</code>, <code>esperar()</code> e <code>usar()</code>.
                         </p>
                         <p>
-                           Novamente, ambas versões funcionam de modo identico, apenas com a diferença de que a porta padrão é 8080 caso outra não seja informada.
+                            A função <code>testar()</code> adiciona seus testes na suíte de testes, recebendo como primeiro parâmetro uma descrição 
+                            do teste com até 75 caracteres e, como segundo parâmetro, uma função com o teste de fato.
+                        </p>
+                        <p>
+                            Nesta função você pode executar quaisquer rotinas que deseje testar, como conferir models, arquivos, APIs, etc. 
+                            O teste sempre irá passar a menos que esta função retorne falso, lance uma exceção ou ocorra um erro na execução. Por exemplo:
                         </p>
                         <div>
-                            <img src="./assets/img/forja-1.webp" class="img-fluid">
-                        </div>
-                </section>
-                <section class="pt-5" id="Criar">
-                    <h4>Comando Criar</h4>
-                    <div class="p-3">
-                        <p>
-                            Esse comando inicia o servidor de desenvolvimento do Hefestos, podendo ser acessado na url 'localhost:8080', 
-                            onde 8080 é o valor padrão da <a href="https://www.cloudflare.com/pt-br/learning/network-layer/what-is-a-computer-port/#:~:text=As%20portas%20s%C3%A3o%20locais%20virtuais,de%20rede%20come%C3%A7am%20e%20terminam." target="_blank">
-                            porta</a>, esta que pode ser configurada informando um valor opcional. Por exemplo:
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar 8081
-                        </p>
-                        <p>
-                           Novamente, ambas versões funcionam de modo identico, apenas com a diferença de que a porta padrão é 8080 caso outra não seja informada.
-                        </p>
-                        <div>
-                            <img src="./assets/img/forja-1.webp" class="img-fluid">
+                            <img src="./assets/img/testes-1.webp" class="img-fluid">
                         </div>
                 </section>
                 <section class="pt-5" id="executando-testes">
