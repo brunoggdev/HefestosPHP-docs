@@ -61,28 +61,74 @@
                     <h4>Comando Criar</h4>
                     <div class="p-3">
                         <p>
-                            Esse comando inicia o servidor de desenvolvimento do Hefestos, podendo ser acessado na url 'localhost:8080', 
-                            onde 8080 é o valor padrão da <a href="https://www.cloudflare.com/pt-br/learning/network-layer/what-is-a-computer-port/#:~:text=As%20portas%20s%C3%A3o%20locais%20virtuais,de%20rede%20come%C3%A7am%20e%20terminam." target="_blank">
-                            porta</a>, esta que pode ser configurada informando um valor opcional. Por exemplo:
+                            Esse comando permite criar tipos pré definidos de arquivos em seus devidos repositórios. São eles: controllers, models, filtros, tabelas e composer. Pode ser usado da seguinte maneira:
                         </p>
                         <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar 8081
+                            php forja criar model Pets
                         </p>
                         <p>
-                           Novamente, ambas versões funcionam de modo identico, apenas com a diferença de que a porta padrão é 8080 caso outra não seja informada.
+                            Um novo arquivo com o nome desejado será criado em seu diretório de models:
                         </p>
                         <div>
-                            <img src="./assets/img/forja-1.webp" class="img-fluid">
+                            <img src="./assets/img/models-1.webp" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            O mesmo vale para controllers, filtros e tabelas. Basta informar o tipo de 
+                            arquivo que deseja criar, seguido do nome desejado para ele e pronto. 
+                        </p>
+                        <p>
+                            A exceção é o composer, pois esse comando visa criar o arquivo 'composer.json' 
+                            e realizar as configurações necessárias para utilização do composer no framework.
+                        </p>
+                        <p>
+                            Sua utilização é tão simples quanto, mas lembre-se, claro, de garantir que o composer esteja instalado em sua máquina. Depois:
+                        </p>
+                        <div>
+                            <img src="./assets/img/forja-2.webp" class="img-fluid">
                         </div>
                 </section>
                 <section class="pt-5" id="executando-testes">
-                    <h4>Executando testes</h4>
+                    <h4>Comando Migrar</h4>
                     <div class="p-3">
                         <p>
-                            Uma vez declarados os testes, você deve utilizar a forja para executa-los e os resultados serão exibidos no seu terminal:
+                            O comando migrar executa as tabelas definidas no seu diretório de tabelas. 
+                            O comando irá executar todas as tabelas no diretório ou apenas a especificada. 
+                            Há ainda um indicador "zero" para executar a tabela "do zero", ou seja, 
+                            mesmo que ela já exista, será deletada e recriada. 
+                            Por exemplo, todas as opções abaixo são válidas:
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja migrar <span class="text-secondary ms-3">// executa todas as tabelas</span>
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja migrar zero <span class="text-secondary ms-3">// executa todas as tabelas do zero</span>
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja migrar pets <span class="text-secondary ms-3">// executa apenas a tabela pets</span>
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja migrar pets zero <span class="text-secondary ms-3">// executa apenas a tabela pets do zero</span>
+                        </p>
+                        <div>
+                            <img src="./assets/img/testes-2.webp" class="img-fluid">
+                        </div>
+                        <p class="mt-5">
+                            Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
+                            Informe então o caminho da subpasta com os testes desejados ou mesmo um arquivo específico caso não deseje executar todos os testes:
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja testar subpasta
+                        </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja testar subpasta/testes_especificos.php
+                        </p>
+                    </div>
+                </section>
+                <section class="pt-5" id="executando-testes">
+                    <h4>Comando Migrar</h4>
+                    <div class="p-3">
+                        <p>
+                            O comando migrar executa as tabelas definidas no seu diretório de tabelas. O comando irá executar todas as tabelas no diretório ou apenas a especificada. Há ainda um indicador "zero" para executar a tabela "do zero", ou seja, mesmo que ela já exista, será deletada e recriada. Por exemplo:
                         </p>
                         <p class="alert alert-dark mt-4 mb-4">
                             php forja testar
@@ -100,54 +146,6 @@
                         <p class="alert alert-dark mt-4 mb-4">
                             php forja testar subpasta/testes_especificos.php
                         </p>
-                    </div>
-                </section>
-                <section class="pt-5" id="testes-mais-completos">
-                    <h4>Testes mais completos</h4>
-                    <div class="p-3">
-                        <p>
-                            Claro, os exemplos acima são muito básicos e você irá precisar de testes mais completos e padronizados. 
-                            Por isso, a função <code>esperar()</code> promove uma api intuitiva para ser utilizada em seus testes e torna-los mais organizados e legiveis.
-                        </p>
-                        <p>
-                            Ela recebe um único parâmetro que pode ser qualquer coisa (string, array, objeto, etc.) 
-                            e retorna um objeto onde você pode encadear métodos para testar esse valor. É mais fácil fazer que falar:
-                        </p>
-                        <div>
-                            <img src="./assets/img/testes-3.webp" class="img-fluid">
-                        </div>
-                        <p class="mt-5">
-                            Desse modo, você pode praticamente ler o teste e saber o que ele faz instantâneamente, 
-                            onde cada método chamado irá conferir algo "esperado" a respeito do valor informado e 
-                            lançar uma exceção específica em caso incoerente. Veja:
-                        </p>
-                        <div>
-                            <img src="./assets/img/testes-4.webp" class="img-fluid">
-                        </div>
-                        <p class="mt-5">
-                            Como pode ver, o primeiro teste passa sem problemas mas o segundo, 
-                            apesar de passar em não ser nulo e em ser um número, 
-                            falha ao verificar que é um float e retorna esse erro específico. 
-                            Confira <a href="/Ferramentas.html#Esperar">Esperar</a> para ver todos os métodos disponíveis.
-                        </p>
-                        <p>
-                            Ademais, as vezes você pode querer um mesmo valor disponível em vários testes. 
-                            Para isso, a função <code>usar()</code> recebe um array associativo para definir propriedades de classe (acessadas com $this) compartilhadas em todos os testes.
-                        </p>
-                        <p>
-                            A chave do array associativo será o nome da propriedade que receberá qualquer valor atribuido. 
-                            Desse modo, Você pode informar um array associativo diretamente, por exemplo:
-                        </p>
-                        <div>
-                            <img src="./assets/img/testes-5.webp" class="img-fluid">
-                        </div>
-                        <p class="mt-5">
-                            Ou ainda, caso deseje processar algo mais complexo antes e depois atribuir esse valor, 
-                            você pode informar uma função e retornar o array com a chave e valor desejados:
-                        </p>
-                        <div>
-                            <img src="./assets/img/testes-6.webp" class="img-fluid">
-                        </div>
                     </div>
                 </section>
             </div>
