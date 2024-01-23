@@ -87,7 +87,7 @@
                             <img src="./assets/img/forja-2.webp" class="img-fluid">
                         </div>
                 </section>
-                <section class="pt-5" id="executando-testes">
+                <section class="pt-5" id="Migrar">
                     <h4>Comando Migrar</h4>
                     <div class="p-3">
                         <p>
@@ -110,42 +110,47 @@
                             php forja migrar pets zero <span class="text-secondary ms-3">// executa apenas a tabela pets do zero</span>
                         </p>
                         <div>
-                            <img src="./assets/img/testes-2.webp" class="img-fluid">
+                            <img src="./assets/img/forja-3.webp" class="img-fluid">
                         </div>
-                        <p class="mt-5">
-                            Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
-                            Informe então o caminho da subpasta com os testes desejados ou mesmo um arquivo específico caso não deseje executar todos os testes:
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja testar subpasta
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja testar subpasta/testes_especificos.php
-                        </p>
                     </div>
                 </section>
-                <section class="pt-5" id="executando-testes">
-                    <h4>Comando Migrar</h4>
+                <section class="pt-5" id="Testar">
+                    <h4>Comando Testar</h4>
                     <div class="p-3">
                         <p>
-                            O comando migrar executa as tabelas definidas no seu diretório de tabelas. O comando irá executar todas as tabelas no diretório ou apenas a especificada. Há ainda um indicador "zero" para executar a tabela "do zero", ou seja, mesmo que ela já exista, será deletada e recriada. Por exemplo:
+                            Similarmente ao comando migrar, o comando testar executa os testes definidos no seu diretório de testes. 
+                            O comando irá também executar todos os testes no diretório ou apenas os especificados. 
+                            Ou seja, você pode informar um nome de arquivo ou mesmo um subdiretório inteiro para que apenas os seus testes sejam executado.
+                            Desse modo: 
                         </p>
                         <p class="alert alert-dark mt-4 mb-4">
                             php forja testar
                         </p>
-                        <div>
-                            <img src="./assets/img/testes-2.webp" class="img-fluid">
-                        </div>
-                        <p class="mt-5">
-                            Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
-                            Informe então o caminho da subpasta com os testes desejados ou mesmo um arquivo específico caso não deseje executar todos os testes:
-                        </p>
                         <p class="alert alert-dark mt-4 mb-4">
                             php forja testar subpasta
                         </p>
                         <p class="alert alert-dark mt-4 mb-4">
                             php forja testar subpasta/testes_especificos.php
+                        <div>
+                            <img src="./assets/img/testes-2.webp" class="img-fluid">
+                        </div>
+                    </div>
+                </section>
+                <section class="pt-5" id="Fornalha">
+                    <h4>Comando Fornalha</h4>
+                    <div class="p-3">
+                        <p>
+                            O comando fornalha permite ao desenvolvedor ter acesso à toda sua aplicação 
+                            por meio da linha de comando e executar código PHP nesse contexto. 
+                            Com isso, é possível a realização de diversas tarefas como acessar arquivos e constantes, 
+                            comunicação com o banco de dados ou testar funcionalidades, como exemplificado abaixo:
                         </p>
+                        <p class="alert alert-dark mt-4 mb-4">
+                            php forja fornalha
+                        </p>
+                        <div>
+                            <img src="./assets/img/forja-4.webp" class="img-fluid">
+                        </div>
                     </div>
                 </section>
             </div>
