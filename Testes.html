@@ -39,7 +39,7 @@
                     <ul class="ps-4">
                         <li><a class="link-lava" href="#escrevendo-testes">Escrevendo testes</a></li>
                         <li><a class="link-lava" href="#executando-testes">Executando testes</a></li>
-                        <li><a class="link-lava" href="#testes-mais-completos">Testes mais completos</a></li>
+                        <li><a class="link-lava" href="#aprofundando">Aprofundando</a></li>
                     </ul>
                 </section>
                 <section class="pt-5" id="escrevendo-testes">
@@ -47,18 +47,18 @@
                     <div class="p-3">
                         <p>
                             Para escrever testes primeiro crie um arquivo neste diretório com o nome que desejar. 
-                            Aqui você terá acesso à mais três funções específicas de testes: <code>testar()</code>, <code>esperar()</code> e <code>usar()</code>.
+                            Aqui você terá acesso à mais quatro funções específicas de testes: <code>testar()</code>, <code>esperar()</code>, <code>usar()</code> e  <code>falhar()</code>.
                         </p>
                         <p>
                             A função <code>testar()</code> adiciona seus testes na suíte de testes, recebendo como primeiro parâmetro uma descrição 
-                            do teste com até 75 caracteres e, como segundo parâmetro, uma função com o teste de fato.
+                            para o teste que será visualizada no terminal e, como segundo parâmetro, uma função com o teste de fato.
                         </p>
                         <p>
                             Nesta função você pode executar quaisquer rotinas que deseje testar, como conferir models, arquivos, APIs, etc. 
-                            O teste sempre irá passar a menos que esta função retorne falso, lance uma exceção ou ocorra um erro na execução. Por exemplo:
+                            O teste passa a menos que uma espera (função <code>esperar()</code>) falhe, a função <code>falhar()</code> seja usada, ou, claro, caso ocorra um erro na execução. Por exemplo:
                         </p>
                         <div>
-                            <img src="./assets/img/testes-1.webp" class="img-fluid">
+                            <img src="./assets/img/testes-1.png" class="img-fluid">
                         </div>
                 </section>
                 <section class="pt-5" id="executando-testes">
@@ -71,7 +71,7 @@
                             php forja testar
                         </p>
                         <div>
-                            <img src="./assets/img/testes-2.webp" class="img-fluid">
+                            <img src="./assets/img/testes-2.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
                             Como dito, você pode criar vários arquivos de testes e até agrupa-los em subpastas dentro da pasta Testes. 
@@ -85,52 +85,57 @@
                         </p>
                     </div>
                 </section>
-                <section class="pt-5" id="testes-mais-completos">
-                    <h4>Testes mais completos</h4>
+                <section class="pt-5" id="aprofundando">
+                    <h4>Aprofundando</h4>
                     <div class="p-3">
                         <p>
-                            Claro, os exemplos acima são muito básicos e você irá precisar de testes mais completos e padronizados. 
-                            Por isso, a função <code>esperar()</code> promove uma api intuitiva para ser utilizada em seus testes e torna-los mais organizados e legiveis.
+                            A função <code>esperar()</code> é o coração dos testes pois promove uma api intuitiva para ser utilizada 
+                            dentro dos testes e torna-los mais organizados e legiveis.
                         </p>
                         <p>
                             Ela recebe um único parâmetro que pode ser qualquer coisa (string, array, objeto, etc.) 
-                            e retorna um objeto onde você pode encadear métodos para testar esse valor. É mais fácil fazer que falar:
+                            e retorna um objeto onde você pode encadear métodos para testar esse valor, 
+                            de modo que você pode praticamente ler o teste e saber o que ele faz rapidamente. <br>
+                            É mais fácil fazer que falar:
                         </p>
                         <div>
-                            <img src="./assets/img/testes-3.webp" class="img-fluid">
+                            <img src="./assets/img/testes-3.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
-                            Desse modo, você pode praticamente ler o teste e saber o que ele faz instantâneamente, 
-                            onde cada método chamado irá conferir algo "esperado" a respeito do valor informado e 
+                            Cada método chamado na espera irá conferir algo "esperado" a respeito do valor sendo testado e 
                             lançar uma exceção específica em caso incoerente. Veja:
                         </p>
                         <div>
-                            <img src="./assets/img/testes-4.webp" class="img-fluid">
+                            <img src="./assets/img/testes-4.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
                             Como pode ver, o primeiro teste passa sem problemas mas o segundo, 
                             apesar de passar em não ser nulo e em ser um número, 
                             falha ao verificar que é um float e retorna esse erro específico. 
-                            Confira <a href="/Ferramentas.html#Esperar">Esperar</a> para ver todos os métodos disponíveis.
+                            Confira <a href="/Esperar.html#">Esperar</a> para ver todos os métodos disponíveis.
+                        </p>
+                        <p class="mt-5">
+                            Por fim, a função <code>usar()</code> pode ser usada para executar uma função informada e definir valores que podem ser compartilados por todos os testes que vierem depois.
+                            Para isso, basta que a função informada retorne um array associativo e então serão definidas proriedades de classe na suíte de testes (acessadas com $this) compartilhadas em todos os testes.
+                            
                         </p>
                         <p>
-                            Ademais, as vezes você pode querer um mesmo valor disponível em vários testes. 
-                            Para isso, a função <code>usar()</code> recebe um array associativo para definir propriedades de classe (acessadas com $this) compartilhadas em todos os testes.
-                        </p>
-                        <p>
-                            A chave do array associativo será o nome da propriedade que receberá qualquer valor atribuido. 
-                            Desse modo, Você pode informar um array associativo diretamente, por exemplo:
+                            Novamente, é mais fácil fazer que falar. Por exemplo, no caso anterior, 
+                            invés de declarar a variável <code>$valor_teste = 100;</code> nos dois testes, 
+                            podemos utilizar a função usar() para defirnir esse valor para ambos os testes da seguinte forma:</p>
                         </p>
                         <div>
-                            <img src="./assets/img/testes-5.webp" class="img-fluid">
+                            <img src="./assets/img/testes-5.png" class="img-fluid">
                         </div>
                         <p class="mt-5">
-                            Ou ainda, caso deseje processar algo mais complexo antes e depois atribuir esse valor, 
-                            você pode informar uma função e retornar o array com a chave e valor desejados:
+                            Claro, você também pode executar qualquer código dentro dessas funções como acesso à arquivos, models e até mesmo fazer requisições HTTP:
                         </p>
                         <div>
-                            <img src="./assets/img/testes-6.webp" class="img-fluid">
+                            <img src="./assets/img/testes-6.png" class="img-fluid">
                         </div>
+                        <p class="mt-5">
+                            Lembrando que, claro, você pode retornar quantos itens quiser no array e também utilizar a função usar quantas vezes qusier dentro do arquivo de testes.
+                        </p>
                     </div>
                 </section>
             </div>
