@@ -52,3 +52,24 @@ code{
     padding: 2px 4px;
     border-radius: 3px;
 }
+
+code::-webkit-scrollbar {
+    width: 8px; /* Adjust width for vertical scrollbar */
+    height: 8px; /* Adjust height for horizontal scrollbar */
+}
+
+/* Track (background of the scrollbar) */
+code::-webkit-scrollbar-track {
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Thumb (scrolling element) */
+code::-webkit-scrollbar-thumb {
+    background: #888; /* Dark gray color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Thumb hover state */
+code::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker gray on hover */
+}
