@@ -74,3 +74,9 @@ function copyToClipboard(button) {
 }
 
 hljs.highlightAll();
+
+setTimeout(() => {
+    document.querySelectorAll('code.language-php').forEach(block => {
+      block.innerHTML = block.innerHTML.replace(/, function \(/g, ', <span class="hljs-keyword">function</span> (');
+    });
+}, 300);

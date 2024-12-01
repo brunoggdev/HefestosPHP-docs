@@ -29,27 +29,35 @@
             <h2 class="mb-5">Pasta Config</h2>
             <div class="p-3">
             <p class="ps-3">
-                Na pasta Config temos os arquivos de configuração geral do sistema:
+                Na pasta Config temos os arquivos de configuração do seu app. 
+                Esses arquivos normalmente retornam um array associativo com os valores desejados para cada configuração.
+                <br>
+                <br>
+                    Você pode criar seus próprios arquivos de configuração aqui e acessá-los com a função auxiliar <a href="/Auxiliares.html#config">config()</a>.
+                <br>
+                <br>
+                    Dito isso, o Hefestos conta com alguns arquivos pré-definidos utilizados para diversos propósitos pelo framework. São eles: 
             </p>
             <ul class="ps-5">
-                <li><a class="link-lava" href="#Constantes">Constantes</a></li>
+                <li><a class="link-lava" href="#App">App</a></li>
                 <li><a class="link-lava" href="#Database">Database</a></li>
                 <li><a class="link-lava" href="#Filtros">Filtros</a></li>
                 <li><a class="link-lava" href="#Rotas">Rotas</a></li>
+                <li><a class="link-lava" href="#Inicializacao">Inicialização</a></li>
             </ul>
 
             <section id="Constantes" class="pt-5">
-                <h4>Constantes</h4>
+                <h4>App</h4>
                 <p class="p-3">
-                    Similarmente ao arquivo ".env" que você verá em projetos mais complexos, neste arquivo você irá definir 
-                    constantes que ficarão disponíveis em toda a sua aplicação e serão utilizadas pelo framework para 
-                    diversas configurações, então atenção nesses dados.
+                    Nesse arquivo você irá definir os valores de constantes que serão utilizados pelo framework para diversas ações 
+                    e que também ficarão disponíveis em toda a sua aplicação, então atenção nesses dados. São eles:
                 </p>
                 <ul>
-                    <li class="p-1"><strong>PASTA_RAIZ</strong> - A raiz do projeto, ou seja, onde devem estar locazilados os diretórios "app" e "system".</li>
-                    <li class="p-1"><strong>AMBIENTE</strong> - Em ambiente de "desenvolvimento" todos os erros serão exibidos mas em "producao" os erros serão suprimidos.</li>
-                    <li class="p-1"><strong>URL_BASE</strong> - A url base do projeto, normalmente algo como "localhost:8080" em desenvolvimento ou "exemplo.com" em producao.</li>
+                    <li class="p-1"><strong>AMBIENTE</strong> - Normalmente "desenvolvimento" ou "producao". Utilizado, por exemplo, para decidir se devemos ou não mostrar erros na tela.</li> 
+                    <li class="p-1"><strong>URL_BASE</strong> - A url base do projeto, normalmente algo como "localhost:8080" em desenvolvimento ou "exemplo.com.br" em producao.</li>
                     <li class="p-1"><strong>VERSAO_APP</strong> - Apenas indica a versão atual do app mas pode ser muito útil para coisas como "cache busting" ou logs.</li>
+                    <li class="p-1"><strong>TIMEZONE</strong> - O fuso horário padrão do seu projeto dentre os <a href="https://www.php.net/manual/pt_BR/timezones.php">disponíveis no php</a>.</li>
+                    <li class="p-1"><strong>MANUTENCAO</strong> - Apenas um valor booleano indicando se devemos suspender acesso ao app para casos de manutenção.</li>
                 </ul>
             </section>
 
@@ -57,16 +65,19 @@
             <section id="Database" class="pt-5">
                 <h4>Database</h4>
                 <p class="p-3">
-                    Neste arquivo você irá encontrar um array associativo onde deverão ser configuradas as informações 
-                    de conexão com o banco de dados. Dois tipos de banco de dados relacional são suportados nativamente: mysql ou sqlite. 
+                    Neste arquivo você irá confirar as informações de conexão com o banco de dados. 
+                    Note que podem ser configuradas várias conexões com banco de dados, cada para um ambiente específico. 
+                    <br>
+                    <br>
+                    Dois tipos de banco de dados relacional são suportados nativamente: mysql ou sqlite. 
                     Caso opte por sqlite, basta informar o caminho completo do arquivo, caso contrário, é necessário informar host, nome do banco de dados, 
                     usuário e senha.
                 </p>
                 <ul>
                     <li class="p-1"><strong>driver</strong> - O driver sql do php que deseja utilizar, no momento suportados "mysql" e "sqlite".</li>
-                    <li class="p-1"><strong>sqlite</strong> - O caminho completo do arquivo (ex: 'app/Database/sqlite/default.sqlite').</li>
+                    <li class="p-1"><strong>sqlite</strong> - O caminho completo do arquivo (ex: 'app/Database/sqlite/banco_de_dados.sqlite').</li>
                     <li class="p-1"><strong>host</strong> - Host da conexão mysql, normalmente localhost se em desenvolvimento.</li>
-                    <li class="p-1"><strong>nomeDB</strong> - Nome do banco de dados mysql configurado.</li>
+                    <li class="p-1"><strong>nome_db</strong> - Nome do banco de dados mysql configurado.</li>
                     <li class="p-1"><strong>usuario</strong> - Usuario configurado no banco de dados mysql.</li>
                     <li class="p-1"><strong>senha</strong> - Senha configurada no banco de dados mysql.</li>
                 </ul>
@@ -81,18 +92,18 @@
                         no qual você define a lógica de cada filtro. 
                     </p>
                     <p>
-                        Para isso, é utilizado um array associativo onde cada chave do array é o nome do filtro que utilizado nas rotas e o valor deve ser a classe (com namespace completo) 
+                        Para configurar, cada chave do array é o nome do filtro que utilizado nas rotas e o valor deve ser a classe (com namespace completo) 
                         que será utilizada nele.
                     </p>
                     <p>
                         Para aplicar dois filtros em sequência para um mesmo nome de filtro basta informar um array com ambas as classes na ordem desejada. 
                     </p>
                 </div>
-                <p class="lead fs-6 ps-3">Dica: Importe a classe normalmente com "use" e utilize nela o metodo "::class" que deverá retornar seu namespace completo apropriadamente.</p>
+                <!-- <p class="ms-3 alert alert-secondary w-75">Dica: Importe a classe normalmente com "use" e utilize nela o metodo "::class" que deverá retornar seu namespace completo apropriadamente.</p> -->
                 <div class="p-3">
                         <div class="position-relative">
                             <!-- Preformatted code block -->
-                            <pre><code class="language-php rounded">use App\Filtros\FiltroUsuarioLogado;
+                            <pre><code class="language-php rounded border-0">use App\Filtros\FiltroUsuarioLogado;
 use App\Filtros\FiltroUsuarioAdmin;
 
 return [
@@ -125,19 +136,42 @@ return [
                 <h4>Rotas</h4>
                 <div class="p-3">
                     <p>
-                        Neste arquivo é instanciado o objeto <code>$rotas</code> que possui métodos para configurar as rotas da sua aplicação.
+                        Aqui você pode configurar as rotas da sua aplicação. Isso pode ser feito através do objeto 
+                        <code>Rota</code> que possui métodos estáticos para cada verbo http disponível (get, post, put, patch e delete).
                     </p>
                     <p>
-                        Para configurar uma rota basta utilizar um dos metodos http disponíveis no objeto <code>$rotas</code> (get, post, put, patch e delete).
-                        Estes métodos recebem dois parametros: a url desejada e uma função responsável por processar a resposta, que deve sempre explicitamente retornar algo com <code>return</code>.
+                        Estes métodos recebem dois parametros, respectivamente: a url da rota e uma função responsável por processar a resposta, que deve sempre explicitamente retornar algo com <code>return</code>.
                     </p>
                 </div>
                 <div class="p-3 pt-1">
-                    <pre><code class="language-php border-5">use Hefestos\Rotas\Rota;
+                    <div class="position-relative">
+                        <pre><code class="language-php rounded border-0">use Hefestos\Rotas\Rota;
 
 Rota::get('/', function () {
     return view('home');
+});
+
+Rota::post('/pet', function () {
+    // Cadastrar pet
+
+    return json([
+        'status' => 'ok',
+        'message' => 'Pet cadastrado com sucesso!'
+        'data' => [...]
+    ]);
 });</code></pre>
+                        <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                               style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                onclick="copyToClipboard(this)" 
+                                title="Copiar"
+                                >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                            </svg>
+                        </button>
+                    </div>
                     <!-- <img src="./assets/img/config-rotas-1.webp?v=0.3" class="img-fluid"> -->
                 </div>
                 <p class="m-3 alert alert-light">
@@ -145,23 +179,62 @@ Rota::get('/', function () {
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                     </svg>
-                    Note que se uma requisição "get" for feita para "uma-rota-post" ela não será reconhecida e receberá um 404 automaticamente.
+                    Note que se uma requisição "get" for feita para "/registrar" ela não será reconhecida e receberá um erro 404 automaticamente.
                 </p>
                 <div class="p-3 mt-4">
-                    Apesar de ser possível informar uma função para processar a requisicao diretamente no método como no exemplo acima para algo simples, 
+                    Apesar de ser possível informar uma função para processar a requisicao diretamente na rota para coisas simples como no exemplo acima,
                     normalmente você irá apenas apontar um método de um controller para processar à requisicao:
                 </div>
                 <div class="p-3 pt-1">
-                    <img src="./assets/img/config-rotas-2.webp?v=0.3" class="img-fluid">
+                    <div class="position-relative">
+                        <pre><code class="language-php rounded border-0">// Uma string com o controller e seu respectivo metodo desejado separados por '::'
+Rota::post('/pet', 'MeuController::meuMetodo');
+
+// ou exatamente equivalente:
+
+// Um array com o primeiro item sendo o namespace completo da classe e o segundo uma string com o metodo desejado
+Rota::post('/pet', [MeuController::class, 'meuMetodo']);</code></pre>
+                        <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                               style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                onclick="copyToClipboard(this)" 
+                                title="Copiar"
+                                >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- <img src="./assets/img/config-rotas-2.webp?v=0.3" class="img-fluid"> -->
                 </div>
-                <div class="p-3 mt-4">
-                    Você também pode usar cartas coringa ou "wildcards": partes da url que podem variar utilizando <code>{param}</code> depois 
-                    ou entre as barras (/) da url, e os valores recebidos serão repassados respectivamente como parâmetros para a função de resposta:
+                <div class="p-3">
+                    Você também pode criar rotas dinâmicas, ou seja, partes entre as barras (/) da url que podem variar. 
+                    Para tal basta colocar entre chaves a parte da rota que deseja, podendo dar o nome que achar melhor, 
+                    e os valores recebidos serão repassados respectivamente como parâmetros para a função de resposta:
                 </div>
                 <div class="p-3 pt-1">
-                    <img src="./assets/img/config-rotas-3.webp?v=0.3" class="img-fluid">
+                    <div class="position-relative">
+                        <pre><code class="language-php rounded border-0">// Responderá rotas como '/usuario/1' e '/usuario/56'
+Rota::get('/usuario/{id_usuario}', 'ExemploController::metodo1');
+
+// Responderá rotas como '/usuario/1/pets/3' e '/usuario/56/pets/1'
+Rota::get('/usuario/{id_usuario}/pets/{id_pet}', [ExemploController::class, 'metodo2']);</code></pre>
+                        <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                               style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                onclick="copyToClipboard(this)" 
+                                title="Copiar"
+                                >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- <img src="./assets/img/config-rotas-3.webp?v=0.3" class="img-fluid"> -->
                 </div>
-                <div class="p-3 mt-4">
+                <div class="p-3">
                     <p>
                         Finalmente, você pode utilizar nas suas rotas os filtros mencionados no tópico anterior, também conhecidos como "middleware", 
                         permitindo um maior controle elas para, por exemplo, filtrar rotas acessíveis apenas por usuários logados.
@@ -170,24 +243,110 @@ Rota::get('/', function () {
                         Para tal, você utilizar o método <code>filtro</code> na rota desejada:
                     </p>
                     <div class="pt-1">
-                        <img src="./assets/img/config-rotas-4.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">// Será aplicado o(s) filtro(s) para a chave 'logado' na config de filtros. 
+Rota::get('/uma-rota-para-comuns-logados', 'MeuController::meuMetodo')->filtro('logado');
+
+// Na chave 'admin' podemos, por exemplo, combinar o filtro 'logado' com o 'admin' para que ambos sejam aplicados.
+Rota::get('/uma-rota-para-admins-logados', 'MeuController::meuMetodo')->filtro('admin');</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                   style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    onclick="copyToClipboard(this)" 
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/config-rotas-4.webp?v=0.3" class="img-fluid"> -->
                     </div>
-                    <p class="mt-5">
-                        Você pode ainda agrupar várias rotas sob um único filtro utilizando o método <code>agrupar</code> do objeto <code>$rotas</code>, 
-                        informando o nome do filtro desejado e uma função que deve utilizar o objeto <code>$rotas</code> para declarar as demais rotas:
+                    <p class="my-4">
+                        Você pode ainda agrupar várias rotas sob um único filtro utilizando o método <code>agrupar()</code>, 
+                        informando o nome do filtro desejado e uma função onde pode declarar as rotas do grupo. Por exemplo: 
                     </p>
                     <div class="pt-1">
-                        <img src="./assets/img/config-rotas-5.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">// Será aplicado o filtro 'admin' para todas as rotas declaradas dentro da função
+Rota::agrupar('admin', function () {
+    Rota::get('/rota-admin-1', 'MeuController::meuMetodo1');
+    Rota::post('/rota-admin-2', 'MeuController::meuMetodo2');
+    Rota::delete('/rota-admin-3', 'MeuController::meuMetodo3');
+});</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                   style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    onclick="copyToClipboard(this)" 
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/config-rotas-5.webp?v=0.3" class="img-fluid"> -->
                     </div>
                 </div>
-                <p class="m-3 alert alert-light">
+                <p class="m-3 alert alert-secondary">
                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 16 16">
                         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                     </svg>
-                    Dica: <code>$rotas</code> também pode ser passado com a keyword <code>use</code> invés de parâmentro ( <code>, function() use($rotas) {</code> )
+                    Você pode, claro, chamar ainda o metodo filtro individualmente nas rotas do grupo, mas tenha em mente que tomarão precedência sobre o filtro definido no grupo.
                 </p>
             </section>
+
+            
+            <section id="Inicializacao" class="pt-5">
+                <h4>Inicialização</h4>
+                <div class="p-3">
+                    <p>
+                        Este é um arquivo bem opcional, então não se preocupe caso não entenda bem seu uso no começo. 
+                        <br>
+                        <br>
+                        Ele é importado logo cedo na execução do app, tornando-o o lugar perfeito para quaisquer configuracões adicionais que você possa vir a desejar, como para alguma biblioteca ou etc. 
+                    </p>
+                    <p>
+                        Por exemplo, podemos usar esse arquivo para definir como queremos que o Hefestos lide com exceções específicas:
+                    </p>
+                    <div class="position-relative">
+                        <pre><code class="language-php rounded border-0">use Hefestos\Core\App;
+
+App::tratarExcecao(InvalidArgumentException::class, function ($ex) {
+    // invés de apenas gerar um erro 500 diretamente quando uma InvalidArgumentException for lançada, 
+    // você têm a opção de tratar essa exceção do seu jeito e retornar uma mensagem de erro personalizada
+
+    // realizar logs, enviar emails, etc
+
+    return view('erros/meu-erro-customizado', ['erro' => $ex]);
+});</code></pre>
+                        <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                               style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                onclick="copyToClipboard(this)" 
+                                title="Copiar"
+                                >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+
+                    <p class="alert alert-secondary mt-5">
+                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                        </svg>
+                        Atenção: usando esse método, é de sua responsabilidade fazer quaisquer logs ou definir código http da resposta e etc, uma vez que não será tratado diretamente pelo framework.
+                    </p>
+            </section>
+
+
         </div>
         </main>
 
