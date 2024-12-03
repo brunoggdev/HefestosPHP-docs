@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <!-- Enable Highlight.js -->
     <script>hljs.highlightAll();</script>
+    <script defer type="module" src="./assets/js/behaviors.js?v=0.3"></script>
 </head>
 
 <body>
@@ -113,7 +114,7 @@ return [
                 
                             <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0" 
                                     style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;" 
-                                    onclick="copyToClipboard(this)" 
+                                    data-copiar 
                                     title="Copiar"
                                     >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -140,7 +141,7 @@ return [
                         <code>Rota</code> que possui métodos estáticos para cada verbo http disponível (get, post, put, patch e delete).
                     </p>
                     <p>
-                        Estes métodos recebem dois parametros, respectivamente: a url da rota e uma função responsável por processar a resposta, que deve sempre explicitamente retornar algo com <code>return</code>.
+                        Estes métodos recebem dois parâmetros, respectivamente: a url da rota e uma função responsável por processar a resposta, que deve sempre explicitamente retornar algo com <code>return</code>.
                     </p>
                 </div>
                 <div class="p-3 pt-1">
@@ -162,7 +163,7 @@ Rota::post('/pet', function () {
 });</code></pre>
                         <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
-                                onclick="copyToClipboard(this)" 
+                                data-copiar 
                                 title="Copiar"
                                 >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -196,7 +197,7 @@ Rota::post('/pet', 'MeuController::meuMetodo');
 Rota::post('/pet', [MeuController::class, 'meuMetodo']);</code></pre>
                         <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
-                                onclick="copyToClipboard(this)" 
+                                data-copiar 
                                 title="Copiar"
                                 >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -222,7 +223,7 @@ Rota::get('/usuario/{id_usuario}', 'ExemploController::metodo1');
 Rota::get('/usuario/{id_usuario}/pets/{id_pet}', [ExemploController::class, 'metodo2']);</code></pre>
                         <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
-                                onclick="copyToClipboard(this)" 
+                                data-copiar 
                                 title="Copiar"
                                 >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -251,7 +252,7 @@ Rota::get('/uma-rota-para-comuns-logados', 'MeuController::meuMetodo')->filtro('
 Rota::get('/uma-rota-para-admins-logados', 'MeuController::meuMetodo')->filtro('admin');</code></pre>
                             <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
-                                    onclick="copyToClipboard(this)" 
+                                    data-copiar 
                                     title="Copiar"
                                     >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -277,7 +278,7 @@ Rota::agrupar('admin', function () {
 });</code></pre>
                             <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
-                                    onclick="copyToClipboard(this)" 
+                                    data-copiar 
                                     title="Copiar"
                                     >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -325,7 +326,7 @@ App::tratarExcecao(InvalidArgumentException::class, function ($ex) {
 });</code></pre>
                         <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
-                                onclick="copyToClipboard(this)" 
+                                data-copiar 
                                 title="Copiar"
                                 >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
@@ -353,7 +354,7 @@ App::tratarExcecao(InvalidArgumentException::class, function ($ex) {
     </div>
     <button class="btn position-fixed bottom-0 end-0 m-4 p-1" id="myBtn" title="voltar pro topo">
     </button>
-    <script src="./assets/js/behaviors.js?v=0.3"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

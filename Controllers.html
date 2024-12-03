@@ -14,8 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/onedark.min.css">
     <!-- Highlight.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/armasm.min.js"></script>
     <!-- Enable Highlight.js -->
     <script>hljs.highlightAll();</script>
+    <script defer type="module" src="./assets/js/behaviors.js?v=0.3"></script>
 </head>
 
 <body>
@@ -54,31 +56,96 @@
                         seguido do tipo de arquivo desejado (controller) e o nome do controller desejado. Por exemplo,
                         com o comando da forja:
                     </p>
-                    <p class="alert alert-dark mt-4 mb-4">
-                        php forja criar controller UsuariosController
-                    </p>
+                    <div class="position-relative">
+                        <pre><code class="language-armasm rounded border-0">php forja criar controller UsuariosController</code></pre>
+                        <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                               style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                data-copiar
+                                title="Copiar"
+                                >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                            </svg>
+                        </button>
+                    </div>
                     <p>
                         O seguinte arquivo UsuariosController.php será criado na pasta Controllers:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-1.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">&lt;?php
+
+namespace App\Controllers;
+
+use Hefestos\Core\Controller;
+
+class UsuariosController extends Controller
+{
+    public function index()
+    {
+        // return view();
+        // ou
+        // return json();
+        // ou ainda
+        // return redirecionar(); 
+    }
+}</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-1.webp?v=0.3" class="img-fluid"> -->
                     </div>
                 </div>
             </section>
-            <section class="pt-5" id="Recebendo-dados-da-url">
+            <section class="pt-2" id="Recebendo-dados-da-url">
                 <h4>Recebendo dados da url</h4>
                 <div class="p-3">
                     <p>
-                        Para acessar as variáveis recebidas diretamente na url da rota através das "wildcards" basta
-                        declarar seu método de modo a esperar o mesmo número de parâmetros que "wildcards" na rota. Por
+                        Para acessar as variáveis recebidas diretamente na url da rota através das parâmetros dinâmicos basta
+                        declarar seu método de modo a esperar o mesmo número de parâmetros da rota. Por
                         exemplo:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-2.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">// --rotas.php
+// A seguinte rota tem dois parâmetros dinâmicos (ex .: /usuario/13/pet/02)
+$rotas->get('/usuario/{id_usuario}/pet/{id_pet}', 'UsuariosController::buscarPet');
+
+// --UsuariosController.php
+// O método deve então esperar dois parâmetros, nomeados como bem desejar
+public function buscarPet($id_usuario, $id_pet)
+{
+    // No nosso exemplo $id_usuario terá valor "13" e $id_pet terá valor "02"
+}
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-2.webp?v=0.3" class="img-fluid"> -->
                     </div>
                 </div>
             </section>
-            <section class="pt-5" id="Acessando-parâmetros-get-e-pos">
+            <section class="pt-2" id="Acessando-parâmetros-get-e-pos">
                 <h4>Acessando parâmetros get e post</h4>
                 <div class="p-3">
                     <p>
@@ -154,7 +221,7 @@
     </div>
     <button class="btn position-fixed bottom-0 end-0 m-4 p-1" id="myBtn" title="voltar pro topo">
     </button>
-    <script src="./assets/js/behaviors.js?v=0.3"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>

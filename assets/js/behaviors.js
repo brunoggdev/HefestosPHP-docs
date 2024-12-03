@@ -50,23 +50,21 @@ function scrollFunction() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-    console.log('called')
     document.querySelector('aside').scrollIntoView({ block: "start", inline: "end" })
 }
 
 
 function copyToClipboard(button) {
-    // Get the text from the pre element (parent of the button, sibling of the <code>)
-    const codeBlock = button.parentElement.querySelector('code').innerText;
 
-    // Copy the text to the clipboard
+    const targetButton = button.target.closest('[data-copiar]');
+
+    const codeBlock = targetButton.parentElement.parentElement.querySelector('code').innerText;
+
     navigator.clipboard.writeText(codeBlock).then(() => {
-        // Change the button's icon to the "check" icon
-        button.innerHTML = clipboard1;
+        targetButton.innerHTML = clipboard1;
 
-        // Set a timeout to revert the icon after 1.5 seconds
         setTimeout(() => {
-            button.innerHTML = clipboard2;
+            targetButton.innerHTML = clipboard2;
         }, 1500);
     }).catch(err => {
         console.error("Failed to copy text: ", err);
@@ -77,6 +75,11 @@ hljs.highlightAll();
 
 setTimeout(() => {
     document.querySelectorAll('code.language-php').forEach(block => {
-      block.innerHTML = block.innerHTML.replace(/, function \(/g, ', <span class="hljs-keyword">function</span> (');
+        block.innerHTML = block.innerHTML.replace(/, function \(/g, ', <span class="hljs-keyword">function</span> (');
     });
 }, 300);
+
+
+document.querySelectorAll('[data-copiar]').forEach(block => {
+    block.addEventListener('click', copyToClipboard);
+});
