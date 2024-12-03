@@ -151,8 +151,7 @@ public function buscarPet($id_usuario, $id_pet)
                     <p>
                         Comumente você precisará receber dados enviados por parâmetros "get" ou "post" e, para tal,
                         basta utilizar os métodos <code>dadosGet</code> ou <code>dadosPost</code> respectivamente,
-                        herdados do
-                        ControllerBase.
+                        herdados do Controller base do Hefestos.
                     </p>
                     <p>
                         Estes métodos fornecem uma maneira limpa e conveniente de acessar um array associativo padrão do
@@ -161,7 +160,10 @@ public function buscarPet($id_usuario, $id_pet)
                     <p>
                         Ambos os métodos funcionam da mesma forma, sendo a única diferença o array de dados que acessam.
                         Eles aceitam dois parâmetros: uma string ou array com os dados desejados e um booleano indicando a 
-                        higienização que, por padrão, é true.
+                        higienização que, por padrão, é <code>true</code>.
+                    </p>
+                    <p>
+                        Vamos supor o seguinte exemplo de dados enviados em uma requisição GET:
                     </p>
                     <pre><p class="alert alert-dark">[
    'id' => '03',
@@ -172,7 +174,31 @@ public function buscarPet($id_usuario, $id_pet)
                         Desse modo, no método do seu controller você pode usar:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-3.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">public function exemplo()
+{
+    // Se nada for informado retorna todos os dados higienizados
+    $tudo = $this->dadosGet();
+
+    // Informar a chave desejada retornará o seu valor diretamente
+    $id_usuario = $this->dadosGet('id'); // '03'
+
+    // Informar um array com as chaves desejadas retorna um array associativo com seus valores
+    $id_e_apelido = $this->dadosGet(['id', 'apelido' ]); // ['id' = '03', 'apelido' = 'silva']
+}</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-3.webp?v=0.3" class="img-fluid"> -->
                     </div>
                     <p class="mt-5">
                         Porém, como dito anteriormente, os dados são retornados higienizados por padrão para maior segurança,
@@ -180,16 +206,37 @@ public function buscarPet($id_usuario, $id_pet)
                         impedindo a interpretação do javascript:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-4.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">public function exemplo()
+{
+    // Por padrão o item será higienizado e as tags removidas
+    $comentario = $this->dadosGet('comentario'); // alert('script malicioso haha!')
+
+    // Caso não queira higienizar os itens basta passar false no segundo parâmetro
+    $comentario = $this->dadosGet('comentario', false); // &lt;script&gt; alert('script malicioso haha!') &lt;/script&gt;
+}</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-4.webp?v=0.3" class="img-fluid"> -->
                     </div>
                 </div>
             </section>
-            <section class="pt-5" id="Retornando-uma-resposta">
+            <section class="pt-2" id="Retornando-uma-resposta">
                 <h4>Retornando uma resposta</h4>
                 <div class="p-3">
                     <p>
                         Finalmente, talvez após recuperar alguns dados de uma <a href="/Models.html">model</a> ou uma API de terceiros, 
-                        você deve sempre retornar a resposta do método utilizando <code>return</code>, normalmente uma view como  HTML ou JSON, ou ainda um redirecionar.
+                        você deve sempre retornar a resposta do método utilizando <code>return</code>, normalmente uma view com HTML, um JSON ou ainda um <a href="/Auxiliares.html#redirecionar">redirecionar()</a>.
                     </p>
                     <p>
                         Para retornar uma página HTML você deve utulizar a função auxiliar <code><a href="/Auxiliares.html#view">view()</a></code>. 
