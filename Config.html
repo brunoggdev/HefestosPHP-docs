@@ -9,14 +9,14 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./assets/style.css">
-    <script src="./assets/js/menu.js?v=0.3"></script>
+    <script src="./assets/js/menu.js?v=1"></script>
     <!-- Highlight.js CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/onedark.min.css">
     <!-- Highlight.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <!-- Enable Highlight.js -->
     <script>hljs.highlightAll();</script>
-    <script defer type="module" src="./assets/js/behaviors.js?v=0.3"></script>
+    <script defer type="module" src="./assets/js/behaviors.js?v=1"></script>
 </head>
 
 <body>
@@ -139,7 +139,7 @@ return [
                                 </svg>
                             </button>
                     </div>
-                    <!-- <img src="./assets/img/config-filtros.webp?v=0.3" class="img-fluid"> -->
+                    <!-- <img src="./assets/img/config-filtros.webp?v=1" class="img-fluid"> -->
                 </div>
                 <p class="p-3">
                     Neste exemplo, o filtro "logado" vai chamar a classe FiltroUsuarioLogado que irá lidar com o fato de o usuário estar ou não logado. 
@@ -188,7 +188,7 @@ Rota::post('/pet', function () {
                             </svg>
                         </button>
                     </div>
-                    <!-- <img src="./assets/img/config-rotas-1.webp?v=0.3" class="img-fluid"> -->
+                    <!-- <img src="./assets/img/config-rotas-1.webp?v=1" class="img-fluid"> -->
                 </div>
                 <p class="m-3 alert alert-secondary">
                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 16 16">
@@ -222,7 +222,7 @@ Rota::post('/pet', [MeuController::class, 'meuMetodo']);</code></pre>
                             </svg>
                         </button>
                     </div>
-                    <!-- <img src="./assets/img/config-rotas-2.webp?v=0.3" class="img-fluid"> -->
+                    <!-- <img src="./assets/img/config-rotas-2.webp?v=1" class="img-fluid"> -->
                 </div>
                 <div class="p-3">
                     Você também pode criar rotas dinâmicas, ou seja, partes entre as barras (/) da url que podem variar. 
@@ -248,7 +248,7 @@ Rota::get('/usuario/{id_usuario}/pets/{id_pet}', [ExemploController::class, 'met
                             </svg>
                         </button>
                     </div>
-                    <!-- <img src="./assets/img/config-rotas-3.webp?v=0.3" class="img-fluid"> -->
+                    <!-- <img src="./assets/img/config-rotas-3.webp?v=1" class="img-fluid"> -->
                 </div>
                 <div class="p-3">
                     <p>
@@ -277,7 +277,7 @@ Rota::get('/uma-rota-para-admins-logados', 'MeuController::meuMetodo')->filtro('
                                 </svg>
                             </button>
                         </div>
-                        <!-- <img src="./assets/img/config-rotas-4.webp?v=0.3" class="img-fluid"> -->
+                        <!-- <img src="./assets/img/config-rotas-4.webp?v=1" class="img-fluid"> -->
                     </div>
                     <p class="my-4">
                         Você pode ainda agrupar várias rotas sob um único filtro utilizando o método <code>agrupar()</code>, 
@@ -303,7 +303,7 @@ Rota::agrupar('admin', function () {
                                 </svg>
                             </button>
                         </div>
-                        <!-- <img src="./assets/img/config-rotas-5.webp?v=0.3" class="img-fluid"> -->
+                        <!-- <img src="./assets/img/config-rotas-5.webp?v=1" class="img-fluid"> -->
                     </div>
                 </div>
                 <p class="m-3 alert alert-secondary">
