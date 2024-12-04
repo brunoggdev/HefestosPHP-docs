@@ -32,11 +32,15 @@
             <div class="p-3">
             <section class="ps-3">
                 <p>
-                    É na pasta Controllers que ficarão todos os seus controllers, ou seja, as classes responsáveis por
-                    coordenar as repostas às requisicoes.
+                    É na pasta Controllers que ficarão, não surpreendentemente, todos os seus controllers.
                 </p>
                 <p>
-                    Por exemplo, comumente o seu controller vai acessar o seu banco de dados através de uma
+                    Controllers nada mais são que classes responsáveis por coordenar as repostas às requisicoes. 
+                    Aqui você pode criar os métodos que desejar, normalmente seguindo os padrões REST, e tem meios 
+                    de acessar os dados recebidos na requisição para então retornar uma resposta.
+                </p>
+                <p>
+                    Por exemplo, comumente o seu controller vai inspecionar a requisição, acessar o seu banco de dados através de uma
                     <a href="/Models.html">model</a> e então retornar esses dados como um json ou passa-los
                     para uma <a href="/Views.html">view</a> que irá preencher o html a ser retornado para o usuário. Aqui está uma visão geral:
                 </p>
@@ -210,10 +214,10 @@ public function buscarPet($id_usuario, $id_pet)
                             <pre><code class="language-php rounded border-0">public function exemplo()
 {
     // Por padrão o item será higienizado e as tags removidas
-    $comentario = $this->dadosGet('comentario'); // alert('script malicioso haha!')
+    $comentario = $this->dadosGet('comentario'); // "alert('script malicioso haha!')"
 
     // Caso não queira higienizar os itens basta passar false no segundo parâmetro
-    $comentario = $this->dadosGet('comentario', false); // &lt;script&gt; alert('script malicioso haha!') &lt;/script&gt;
+    $comentario = $this->dadosGet('comentario', false); // "&lt;script&gt; alert('script malicioso haha!') &lt;/script&gt;"
 }</code></pre>
                             <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                     style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
@@ -239,26 +243,92 @@ public function buscarPet($id_usuario, $id_pet)
                         você deve sempre retornar a resposta do método utilizando <code>return</code>, normalmente uma view com HTML, um JSON ou ainda um <a href="/Auxiliares.html#redirecionar">redirecionar()</a>.
                     </p>
                     <p>
-                        Para retornar uma página HTML você deve utulizar a função auxiliar <code><a href="/Auxiliares.html#view">view()</a></code>. 
+                        Para retornar uma página HTML você deve utulizar a função auxiliar <a href="/Auxiliares.html#view">view()</a>. 
                         Nela, o primeiro parâmetro é o nome da sua view e o segundo um array associativo indicando os dados que 
                         estarão disponíveis para essa view. Por exemplo:
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-5.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">public function exemplo()
+{
+    $dados = [                  // variáveis disponíveis na view:
+        'id' => 1,              // $id = 1
+        'nome' => 'Bruno',      // $nome = 'Bruno'
+        'ids_pets' => [1,6,7],  // $ids_pets = [1,6,7]
+    ];
+    
+    return view('home', $dados);
+}</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-5.webp?v=0.3" class="img-fluid"> -->
                     </div>
                     <p class="mt-5">
                         Porém, talvez você esteja fazendo uma API e quer apenas retornar esses dados como um JSON para o cliente. 
-                        Para tal, basta usar a função auxiliar <code><a href="/Auxiliares.html#json">json()</a></code>, informando o array desejado.
+                        Para tal, basta usar a função auxiliar <a href="/Auxiliares.html#json">json()</a>, informando o array desejado.
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-6.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">public function exemplo()
+{
+    $dados = [                
+        'id' => 1,
+        'nome' => 'Bruno', 
+        'ids_pets' => [1,6,7],  
+    ];
+    
+    return json($dados);
+}</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-6.webp?v=0.3" class="img-fluid"> -->
                     </div>
                     <p class="mt-5">
                         Por fim, talvez você precise redirecionar o usuário ao invés de fornecer uma resposta em texto, como por exemplo em casos 
-                        de validações. Para tal, utilize a função auxiliar <code><a href="/Auxiliares.html#redirecionar">redirecionar()</a></code>, podendo simplesmente informar a nova url desejada.
+                        de validações. Para tal, utilize a função auxiliar <a href="/Auxiliares.html#redirecionar">redirecionar()</a>, podendo simplesmente informar a nova url desejada.
                     </p>
                     <div>
-                        <img src="./assets/img/controllers-7.webp?v=0.3" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">public function exemplo()
+{
+    // Redirecionar para página de login caso usvário não esteja logado
+    if (!$usuario_logado){
+        return redirecionar('login');
+    }
+}</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <img src="./assets/img/controllers-7.webp?v=0.3" class="img-fluid"> -->
                     </div>
                 </div>
             </section>

@@ -4,6 +4,14 @@
     --color-lava-dim: #8a300f;
 }
 
+.hljs{
+    background: #15171E !important;
+}
+
+.hljs-comment{
+    color: #818791 !important;
+}
+
 img{
     border-radius: 5px; 
 }
