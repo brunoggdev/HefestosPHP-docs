@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/onedark.min.css">
     <!-- Highlight.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/armasm.min.js"></script>
     <!-- Enable Highlight.js -->
     <script>hljs.highlightAll();</script>
     <script defer type="module" src="./assets/js/behaviors.js?v=1"></script>
@@ -60,22 +61,53 @@
                                 Cada tabela é representada por um arquivo php no diretório tabelas, nomeado com a data de criação do arquivo e o nome da tabela.
                                 Para criar uma nova tabela você pode utilizar a forja:
                             </p>
-                            <p class="alert alert-dark mt-4 mb-4">
-                                php forja criar tabela exemplo
-                            </p>
+                            <div class="position-relative">
+                                <pre><code class="language-armasm rounded border-0">php forja criar tabela exemplo</code></pre>
+                                <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                        style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                        data-copiar
+                                        title="Copiar"
+                                        >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                    </svg>
+                                </button>
+                            </div>
                             <p>
                                 Um arquivo como esse será criado na pasta de tabelas:
                             </p>
                             <div>
-                                <img src="./assets/img/database-1.webp?v=1" class="img-fluid">
+                                <div class="position-relative">
+                                    <pre><code class="language-php rounded border-0">&lt;?php
+
+use Hefestos\Database\Tabela;
+
+return ( new Tabela('exemplo') )
+    ->id();</code></pre>
+                                    <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                            style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                            data-copiar
+                                            title="Copiar"
+                                            >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                            class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- <img src="./assets/img/database-1.webp?v=1" class="img-fluid"> -->
                             </div>
                             <p class="mt-5">
                                 Cada arquivo de tabela deve explicitamente retornar (utilizando <code>return</code> ) a SQL para a criação 
-                                da tabela desejada, seja utilizando a classe <code>Tabela</code> ou mesmo uma string pura.
+                                da tabela desejada. A classe <code>Tabela</code> ajuda a construir essa string encadeando metodos, 
+                                mas você também pode retornar uma string pura.
                             </p>
                         </div>
                     </section>
-                    <section class="pt-5" id="Utilizacao">
+                    <section class="pt-2" id="Utilizacao">
                         <h4>Utilização</h4>
                         <div class="p-3">
                             <p>
@@ -88,11 +120,53 @@
                                 detalhes opcionais. A única exceção é o metodo foreignKey, utilizado, claro, para configurar chaves estrangeiras. Por exemplo:
                             </p>
                             <div>
-                                <img src="./assets/img/database-2.webp?v=1" class="img-fluid">
+                                <div class="position-relative">
+                                    <pre><code class="language-php rounded border-0">&lt;?php
+
+use Hefestos\Database\Tabela;
+
+return ( new Tabela('pets') )
+    ->id()
+    ->string('nome')
+    ->int('dono')
+    ->boolean('vip')
+    ->datetime('data_cadastro')
+    ->foreignKey('dono', 'usuarios', 'id');</code></pre>
+    <script>
+        function replaceAfterThird(str) {
+            let count = 0;
+            return str.replace(/hljs-keyword/g, (match) => {
+                count++;
+                // Only replace after the third occurrence
+                if (count > 3) {
+                    return 'hljs-title function_ invoke__'; // Replace with the string of your choice
+                }
+                return match; // Keep the original match
+            });
+        }
+        setTimeout(() => {
+            document.querySelectorAll('code.language-php').forEach(block => {
+                block.innerHTML = replaceAfterThird(block.innerHTML)
+            });
+        }, 300);
+    </script>
+                                    <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                            style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                            data-copiar
+                                            title="Copiar"
+                                            >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                            class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- <img src="./assets/img/database-1.webp?v=1" class="img-fluid"> -->
                             </div>
                             <p class="mt-5">
                                 Note que o nome do método indica o tipo de coluna que será criado, enquanto seu primeiro parâmetro 
-                                espera o nome da coluna. Por fim, o método <code>foreignKey</code>, que deve sempre vir ao final da 
+                                espera o nome da coluna. Note também que, assim como no SQL, o método <code>foreignKey</code>, deve sempre vir ao final da 
                                 construção da tabela, indicando a chave estrangeira.
                             </p>
                             <p>
@@ -100,7 +174,32 @@
                                 caso julgue necessário. O exemplo seguinte criaria a mesma exata tabela do exemplo anterior:
                             </p>
                             <div>
-                                <img src="./assets/img/database-3.webp?v=1" class="img-fluid">
+                                <div class="position-relative">
+                                    <pre><code class="language-php rounded border-0">&lt;?php
+
+use Hefestos\Database\Tabela;
+
+return 'CREATE TABLE pets (
+    id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    dono INT(11) NOT NULL,
+    vip BOOLEAN NOT NULL,
+    data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (dono) REFERENCES usuarios(id)
+    );';</code></pre>
+                                    <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                            style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                            data-copiar
+                                            title="Copiar"
+                                            >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                            class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                            <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- <img src="./assets/img/database-3.webp?v=1" class="img-fluid"> -->
                             </div>
                         </div>
                     </section>
@@ -112,27 +211,71 @@
                                 e por isso aderem a mesma terminologia em sua utilização. Desse modo, para inserir no banco de 
                                 dados as tabelas que criou basta utilizar o comando da forja:
                             </p>
-                            <p class="alert alert-dark mt-4 mb-4">
-                                php forja migrar
-                            </p>
+                            <div class="position-relative">
+                                <pre><code class="language-armasm rounded border-0">php forja migrar</code></pre>
+                                <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                        style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                        data-copiar
+                                        title="Copiar"
+                                        >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                    </svg>
+                                </button>
+                            </div>
                             <p>
                                 O comando irá inserir no seu banco de dados todas as tabelas presentes no seu diretório de tabelas, 
                                 mostrando quaisquer possíveis erros no terminal. Você também pode especificar uma única tabela para 
                                 ser modificada informando seu nome:
                             </p>
-                            <p class="alert alert-dark mt-4 mb-4">
-                                php forja migrar pets
-                            </p>
+                            <div class="position-relative">
+                                <pre><code class="language-armasm rounded border-0">php forja migrar pets</code></pre>
+                                <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                        style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                        data-copiar
+                                        title="Copiar"
+                                        >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                    </svg>
+                                </button>
+                            </div>
                             <p>
                                 E pode ainda utilizar a opção "zero" para recriar as tabelas do zero caso já existam, tanto para 
                                 todas as tabelas, quanto para uma especifica:
                             </p>
-                            <p class="alert alert-dark mt-4 mb-4">
-                                php forja migrar zero
-                            </p>
-                            <p class="alert alert-dark mt-4 mb-4">
-                                php forja migrar pets zero
-                            </p>
+                            <div class="position-relative">
+                                <pre><code class="language-armasm rounded border-0">php forja migrar zero</code></pre>
+                                <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                        style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                        data-copiar
+                                        title="Copiar"
+                                        >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="position-relative">
+                                <pre><code class="language-armasm rounded border-0">php forja migrar pets zero</code></pre>
+                                <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                        style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                        data-copiar
+                                        title="Copiar"
+                                        >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </section>
                 </div>
