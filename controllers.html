@@ -240,10 +240,10 @@ public function buscarPet($id_usuario, $id_pet)
                 <div class="p-3">
                     <p>
                         Finalmente, talvez após recuperar alguns dados de uma <a href="/Models.html">model</a> ou uma API de terceiros, 
-                        você deve sempre retornar a resposta do método utilizando <code>return</code>, normalmente uma view com HTML, um JSON ou ainda um <a href="/Auxiliares.html#redirecionar">redirecionar()</a>.
+                        você deve sempre retornar a resposta do método utilizando <code>return</code>, normalmente uma view com HTML, um JSON ou ainda um <a href="/auxiliares-nativas.html#redirecionar">redirecionar()</a>.
                     </p>
                     <p>
-                        Para retornar uma página HTML você deve utulizar a função auxiliar <a href="/Auxiliares.html#view">view()</a>. 
+                        Para retornar uma página HTML você deve utulizar a função auxiliar <a href="/auxiliares-nativas.html#view">view()</a>. 
                         Nela, o primeiro parâmetro é o nome da sua view e o segundo um array associativo indicando os dados que 
                         estarão disponíveis para essa view. Por exemplo:
                     </p>
@@ -275,7 +275,7 @@ public function buscarPet($id_usuario, $id_pet)
                     </div>
                     <p class="mt-5">
                         Porém, talvez você esteja fazendo uma API e quer apenas retornar esses dados como um JSON para o cliente. 
-                        Para tal, basta usar a função auxiliar <a href="/Auxiliares.html#json">json()</a>, informando o array desejado.
+                        Para tal, basta usar a função auxiliar <a href="/auxiliares-nativas.html#json">json()</a>, informando o array desejado.
                     </p>
                     <div>
                         <div class="position-relative">
@@ -305,7 +305,7 @@ public function buscarPet($id_usuario, $id_pet)
                     </div>
                     <p class="mt-5">
                         Por fim, talvez você precise redirecionar o usuário ao invés de fornecer uma resposta em texto, como por exemplo em casos 
-                        de validações. Para tal, utilize a função auxiliar <a href="/Auxiliares.html#redirecionar">redirecionar()</a>, podendo simplesmente informar a nova url desejada.
+                        de validações. Para tal, utilize a função auxiliar <a href="/auxiliares-nativas.html#redirecionar">redirecionar()</a>, podendo simplesmente informar a nova url desejada.
                     </p>
                     <div>
                         <div class="position-relative">
