@@ -165,18 +165,37 @@ class PetsModel extends Model
                     <h4>Busncando dados</h4>
                     <div class="p-3">
                         <p>
-                            Ao buscar dados do banco, as models irão retornar cada linha representada como um array (padrão) ou objeto. 
-                            <!-- Você pode alterar esse comportamento utilizando os métodos <code>comoObjeto()</code> e <code>comoArray()</code> 
-                            em cada operação ou configurando a propriedade <code>$retorno_padrão</code> para 'array' ou 'objeto'; -->
+                            Para buscar dados do banco, você pode encadear métodos nas models e elas irão retornar cada linha representada como um array associativo (padrão) ou um objeto. 
                         </p>
                         <p>
-                            Para buscar apenas uma linha especifica utilize o método <code>buscar()</code> informando o id 
-                            da linha desejada. Opcionalmente, você pode informar uma coluna especifica para retornar diretamente 
-                            seu valor invés de um array.
+                            Por exemplo, vamos supor que quer buscar todos os dados do pet com id 43. 
+                            Normalmente, no SQL, você faria um 'select *' com um 'where id = 43', certo? 
+                            No Hefestos você pode fazer algo como o seguinte:
                         </p>
-                        <div>
-                            <img src="./assets/img/models-4.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">$pets_model = new PetsModel();
+
+$pet = $pets_model->where(3); // array associativo com todos os dados da linha com id 3
+echo $pet['dono']; // Bruno 
+
+
+$dono = $pets_model->buscar(3, 'dono'); // string com o nome do dono
+echo $dono; // Bruno</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
+                        <!-- <div>
+                            <img src="./assets/img/models-4.webp" class="img-fluid">
+                        </div> -->
                         <p class="mt-5">
                             O método <code>buscarTodos()</code> retorna um array com todos os resultados (linhas) da tabela, ou seja,  
                             um array de arrays, cada um com todas as colunas ou apenas as especificadas:
