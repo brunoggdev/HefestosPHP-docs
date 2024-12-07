@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/base16/onedark.min.css">
     <!-- Highlight.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/armasm.min.js"></script>
     <!-- Enable Highlight.js -->
     <script>hljs.highlightAll();</script>
     <script defer type="module" src="./assets/js/behaviors.js?v=1"></script>
@@ -47,48 +48,107 @@
                     <h4>Comando Iniciar</h4>
                     <div class="p-3">
                         <p>
-                            Esse comando inicia o servidor de desenvolvimento do Hefestos, podendo ser acessado na url 'localhost:8080', 
-                            onde 8080 é o valor padrão da <a href="https://www.cloudflare.com/pt-br/learning/network-layer/what-is-a-computer-port/#:~:text=As%20portas%20s%C3%A3o%20locais%20virtuais,de%20rede%20come%C3%A7am%20e%20terminam." target="_blank">
-                            porta</a>, esta que pode ser configurada informando um valor opcional. Por exemplo:
+                            Esse comando inicia o servidor de desenvolvimento do Hefestos para que possa ser acessado por uma url. 
+                            Por padrão ele usa o valor na constante URL_BASE como por exemplo 'localhost:8080' e assim podendo ser acessado em 'http://localhost:8080'.
                         </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja iniciar 8081
-                        </p>
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja iniciar</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
                         <p>
-                           Novamente, ambas versões funcionam de modo identico, apenas com a diferença de que a porta padrão é 8080 caso outra não seja informada.
+                            Porém, caso deseje iniciar em outro endereço que não a URL_BASE, basta informar o endereço e <a href="https://www.cloudflare.com/pt-br/learning/network-layer/what-is-a-computer-port/#:~:text=As%20portas%20s%C3%A3o%20locais%20virtuais,de%20rede%20come%C3%A7am%20e%20terminam." target="_blank">porta</a> como parâmetro. Por exemplo:
+                        </p>
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja iniciar 127.0.0.1:8081</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p>
+                           Você deve ver algo assim no seu console:
                         </p>
                         <div>
-                            <img src="./assets/img/forja-1.webp" class="img-fluid">
+                            <img src="./assets/img/forja-1.jpg" class="img-fluid">
                         </div>
                 </section>
                 <section class="pt-5" id="Criar">
                     <h4>Comando Criar</h4>
                     <div class="p-3">
                         <p>
-                            Esse comando permite criar tipos pré definidos de arquivos em seus devidos repositórios. São eles: controllers, models, filtros, tabelas e composer. Pode ser usado da seguinte maneira:
+                            Esse comando permite criar tipos pré definidos de arquivos em seus devidos repositórios. São eles: controller, model, filtro, tabela, js, entidade, comando, view, componente/comp e ainda "composer". Pode ser usado da seguinte maneira:
                         </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja criar model Pets
-                        </p>
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja criar model Pets</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
                         <p>
                             Um novo arquivo com o nome desejado será criado em seu diretório de models:
                         </p>
                         <div>
-                            <img src="./assets/img/models-1.webp" class="img-fluid">
+                            <div class="position-relative">
+                                <pre><code class="language-php rounded border-0">&lt;?php
+
+namespace App\Models;
+
+use Hefestos\Core\Model;
+
+class Pets extends Model
+{
+    // tabela do banco de dados ao qual o model está relacionado
+    protected string $tabela = 'pets';
+}</code></pre>
+                                <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                        style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                        data-copiar
+                                        title="Copiar"
+                                        >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                        class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                        <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                        <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- <img src="./assets/img/models-1.webp" class="img-fluid"> -->
                         </div>
                         <p class="mt-5">
-                            O mesmo vale para controllers, filtros e tabelas. Basta informar o tipo de 
+                            O mesmo vale para os demais tipos de arquivos. Basta informar o tipo de 
                             arquivo que deseja criar, seguido do nome desejado para ele e pronto. 
                         </p>
                         <p>
-                            A exceção é o composer, pois esse comando visa criar o arquivo 'composer.json' 
+                            A exceção é o arquivo "composer", pois esse comando visa criar o arquivo "composer.json" 
                             e realizar as configurações necessárias para utilização do composer no framework.
                         </p>
                         <p>
-                            Sua utilização é tão simples quanto, mas lembre-se, claro, de garantir que o composer esteja instalado em sua máquina. Depois:
+                            Sua utilização é tão simples quanto, mas lembre-se, claro, de garantir que o composer esteja instalado em sua máquina. Depois, utilizar o comando deve ser algo como:
                         </p>
                         <div>
                             <img src="./assets/img/forja-2.webp" class="img-fluid">
@@ -104,18 +164,74 @@
                             mesmo que ela já exista, será deletada e recriada. 
                             Por exemplo, todas as opções abaixo são válidas:
                         </p>
-                        <p class="alert alert-dark mt-4 mb-4">
+                        <!-- <p class="alert alert-dark mt-4 mb-4">
                             php forja migrar <span class="text-secondary ms-3">// executa todas as tabelas</span>
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
+                        </p> -->
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja migrar //executa todas as tabelas</code></pre> 
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <p class="alert alert-dark mt-4 mb-4">
                             php forja migrar zero <span class="text-secondary ms-3">// executa todas as tabelas do zero</span>
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
+                        </p> -->
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja migrar zero //executa todas as tabelas do zero</code></pre> 
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <p class="alert alert-dark mt-4 mb-4">
                             php forja migrar pets <span class="text-secondary ms-3">// executa apenas a tabela pets</span>
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
+                        </p> -->
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja migrar pets //executa apenas a tabela pets</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- <p class="alert alert-dark mt-4 mb-4">
                             php forja migrar pets zero <span class="text-secondary ms-3">// executa apenas a tabela pets do zero</span>
-                        </p>
+                        </p> -->
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja migrar pets zero //executa apenas a tabela pets do zero</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
                         <div>
                             <img src="./assets/img/forja-3.webp" class="img-fluid">
                         </div>
@@ -130,14 +246,49 @@
                             Ou seja, você pode informar um nome de arquivo ou mesmo um subdiretório inteiro para que apenas os seus testes sejam executado.
                             Desse modo: 
                         </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja testar
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja testar subpasta
-                        </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja testar subpasta/testes_especificos.php
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja testar</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja testar subpasta</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="position-relative">
+                            <pre><code class="language-armasm rounded border-0">php forja testar subpasta/testes_especificos.php</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                            
                         <div>
                             <img src="./assets/img/testes-2.png" class="img-fluid">
                         </div>
@@ -152,9 +303,20 @@
                             Com isso, é possível a realização de diversas tarefas como acessar arquivos e constantes, 
                             comunicação com o banco de dados ou testar funcionalidades, como exemplificado abaixo:
                         </p>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            php forja fornalha
-                        </p>
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">php forja fornalha</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
                         <div>
                             <img src="./assets/img/forja-4.webp" class="img-fluid">
                         </div>
