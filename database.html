@@ -128,10 +128,10 @@ use Hefestos\Database\Tabela;
 return ( new Tabela('pets') )
     ->id()
     ->string('nome')
-    ->int('dono')
+    ->int('id_dono')
     ->boolean('vip')
     ->datetime('data_cadastro')
-    ->foreignKey('dono', 'usuarios', 'id');</code></pre>
+    ->foreignKey('id_dono', 'usuarios', 'id');</code></pre>
     <script>
         function replaceAfterThird(str) {
             let count = 0;
@@ -182,10 +182,10 @@ use Hefestos\Database\Tabela;
 return 'CREATE TABLE pets (
     id int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
-    dono INT(11) NOT NULL,
+    id_dono INT(11) NOT NULL,
     vip BOOLEAN NOT NULL,
     data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (dono) REFERENCES usuarios(id)
+    FOREIGN KEY (id_dono) REFERENCES usuarios(id)
     );';</code></pre>
                                     <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                             style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
