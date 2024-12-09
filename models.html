@@ -59,12 +59,19 @@
                         <li><a class="link-lava" href="#atualizando-dados">Atualizando dados</a></li>
                         <li><a class="link-lava" href="#deletando-dados">Deletando dados</a></li>
                     </ul>
+                    <p class="my-3 me-3 alert alert-secondary">
+                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                        </svg>
+                        Importante: as models trabalham com a <a href="classe-database.html">classe Database</a> para encadear métodos e portanto é interessante conferir também a sua documentação.
+                    </p>
                 </section>
-                <section class="pt-5" id="Criando-um-model">
+                <section class="pt-3" id="Criando-um-model">
                     <h4>Criando um Model</h4>
                     <div class="p-3">
                         <p>
-                            Para criar um novo model basta utilizar a forja:
+                            Para criar um novo model você pode utilizar a forja e informar o nome desejado. Por exemplo:
                         </p>
                         <div class="position-relative">
                             <pre><code class="language-armasm rounded border-0">php forja criar model PetsModel</code></pre>
@@ -162,25 +169,58 @@ class PetsModel extends Model
                     </div>
                 </section>
                 <section class="pt-2" id="busncando-dados">
-                    <h4>Busncando dados</h4>
+                    <h4>Buscando dados</h4>
                     <div class="p-3">
                         <p>
-                            Para buscar dados do banco, você pode encadear métodos nas models e elas irão retornar cada linha representada como um array associativo (padrão) ou um objeto. 
+                            Para fazer consultas no seu banco de dados, você pode encadear métodos nas models e elas irão retornar cada linha representada como um array associativo (padrão) ou um objeto. 
                         </p>
                         <p>
-                            Por exemplo, vamos supor que quer buscar todos os dados do pet com id 43. 
-                            Normalmente, no SQL, você faria um 'select *' com um 'where id = 43', certo? 
-                            No Hefestos você pode fazer algo como o seguinte:
+                            Vamos supor que você quer buscar o id e o nome de todos os pets cujo dono tem o id 7. 
+                            Normalmente, no SQL, você faria um "select id, nome" com um "where id = 7", certo? 
+                        </p>
+                        <p>
+                            No Hefestos, as models tem esses mesmos métodos, <code>select()</code> e <code>where()</code>, 
+                            além de muitos outros que você pode encadear para montar suas consultas. 
+                        </p>
+                        <p>
+                            Por fim, basta encadear o método <code>todos()</code> para receber um array com todos os registros encontrados para a consulta 
+                            ou o método <code>primeiro()</code> para pegar diretamente o primeiro registro encontrado.
+                            
+                        <p>Por exemplo:</p>
                         </p>
                         <div class="position-relative">
                             <pre><code class="language-php rounded border-0">$pets_model = new PetsModel();
 
-$pet = $pets_model->where(3); // array associativo com todos os dados da linha com id 3
-echo $pet['dono']; // Bruno 
+
+$pets = $pets_model->select('*')->where('id_dono', 7)->todos(); 
+
+var_dump($pets); // vai mostrar:
+
+// [
+//     [
+//         'id' => 1,
+//         'nome' => 'Pingo'
+//     ],
+//     [
+//         'id' => 2,
+//         'nome' => 'Vicky'
+//     ],
+//     [
+//         'id' => 3,
+//         'nome' => 'Sophie'
+//     ]
+// ]
 
 
-$dono = $pets_model->buscar(3, 'dono'); // string com o nome do dono
-echo $dono; // Bruno</code></pre>
+
+$pet = $pets_model->select('*')->where('id_dono', 7)->primeiro();
+
+var_dump($pet); // vai mostrar:
+
+// [
+//     'id' => 1,
+//     'nome' => 'Pingo'
+// ]</code></pre>
                             <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
                                     style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
                                     data-copiar
@@ -197,56 +237,156 @@ echo $dono; // Bruno</code></pre>
                             <img src="./assets/img/models-4.webp" class="img-fluid">
                         </div> -->
                         <p class="mt-5">
-                            O método <code>buscarTodos()</code> retorna um array com todos os resultados (linhas) da tabela, ou seja,  
-                            um array de arrays, cada um com todas as colunas ou apenas as especificadas:
-                        </p>
-                        <div>
-                            <img src="./assets/img/models-3.webp" class="img-fluid">
-                        </div>
-                        <p class="mt-5">
-                            Ambos os métodos citados são atalhos para interagir com os métodos <code>select()</code> e <code>where()</code>, que retornam a instância 
-                            da <a href="Database.html">Database</a> para encadear métodos e montar consultas mais dinâmicas. 
+                            Além disso, as models também possuem alguns atalhos para maior praticidade nas consultas. 
                         </p>
                         <p>
-                            O método <code>select()</code> pode receber um array informando as colunas desejadas no retorno e, caso não informado, 
-                            retornará todas. Nesse caso, o método where pode ser chamado diretamente e encadeado como desejar. Por exemplo:
+                            Por exemplo, é muito comum fazer essas buscas com todas as colunas, então o metodo <code>select()</code> 
+                            pode ser omitido e você pode usar o <code>where()</code> diretamente.
                         </p>
-                        <div>
-                            <img src="./assets/img/models-5.webp" class="img-fluid">
+                        <p>
+                            Podemos ir além: é também muito comum a consulta de buscar os dados um registro específico pelo seu id, então 
+                            as models possuem o método <code>buscar()</code> que recebe o id e retorna diretamente o primeiro registro encontrado.
+                        </p>
+                        <p>
+                            Ou ainda, o método <code>primeiroOnde()</code> funciona Similarmente ao <code>buscar</code> 
+                            mas permitindo que você informe um "where" customizado invés de especificamente o id.
+                        </p>
+
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">$pets_model = new PetsModel();
+
+$pet = $pets_model->where('id', 1)->primeiro();
+
+$pet = $pets_model->buscar(1);
+
+$pet = $pets_model->primeiroOnde('nome', 'Pingo');
+
+// No nosso exemplo, esses 3 métodos retornarão o mesmo resultado:
+var_dump($pet); 
+
+// [
+//    'id' => 1, 
+//    'id_dono' => 7, 
+//    'nome' => 'Pingo', 
+//    'vip' => true,
+//    'data_cadastro' => '2014-06-01 00:00:00'
+// ]
+
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
-                        <p class="alert alert-dark mt-4 mb-4">
-                            É extremamente aconselhável que confira a <a href="Database.html">Database</a> para entender melhor como 
-                            o método <code>where()</code> funciona e quais outros métodos você pode utilizar para suas consultas!
+                        
+                        <!-- <div>
+                            <img src="./assets/img/models-3.webp" class="img-fluid">
+                        </div> -->
+                        <p class="mt-4">
+                            Novamente, é aconselhável que confira a documentação da classe <a href="classe-database.html">classe Database</a> para entender melhor quais 
+                            métodos estão disponíveis e como encadeal-os para montar suas consultas.
                         </p>
                     </div>
                 </section>
-                <section class="pt-5" id="atualizando-dados">
+                <section class="pt-3" id="atualizando-dados">
                     <h4>Atualizando dados</h4>
                     <div class="p-3">
                         <p>
-                            Para atualizar uma ou mais linhas existentes utilize o método <code>update()</code> que recebe dois parâmetros: 
-                            a condição do update e os dados a serem atualizados.
+                            Para atualizar registros no seu banco de dados o processo é bem similar. Normalmente, no SQL, 
+                            você faria um "set" para definir os novos valores e um "where" para definir a condição de atualização, certo?
                         </p>
                         <p>
-                            A condição comumente é apenas o id da linha desejada. Para outro parâmentro basta informar 
-                            um array nos padrões do método <code>where()</code>. No segundo parâmetro, um array associativo indicando a coluna a ser 
-                            atualizada e seu novo valor:
+                            Como já deve esperar, as models no Hefestos tem um metodo <code>set()</code> que recebe os novos valores a serem atualizados.
+                            Depois, você pode usar o método <code>where()</code> para definir a condição de atualização e, finalmente, 
+                            chamar o método <code>update()</code> para executar a atualização.
                         </p>
-                        <div>
-                            <img src="./assets/img/models-6.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">$pets_model = new PetsModel();
+
+
+$novos_dados = [
+    'nome' => 'Pingão',
+];
+
+$pets_model
+    ->set($novos_dados)
+    ->where('id', 1)
+    ->update(); // retorna true ou false em caso de sucesso ou falha
+
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="pt-4">
+                            Novamente, as models oferecem atalhos para casos mais simples comuns/simples. Por exemplo, no caso acima, 
+                            nosso "where" é apenas pelo id do pet. Desse modo podemos fazer apenas:
+                        </p>
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">$novos_dados = [
+    'nome' => 'Pingão',
+];
+
+$pets_model->update($novos_dados, 1); // dados pro update no primeiro parametro, id da linha do segundo
+</code></pre>
+<button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </section>
-                <section class="pt-5" id="deletando-dados">
+                <section class="pt-4" id="deletando-dados">
                     <h4>Deletando dados</h4>
                     <div class="p-3">
                         <p>
-                            Similarmente, para deletar dados do banco, utilize o método <code>delete()</code> 
+                            Por fim, similarmente, para deletar registros do banco de dados, utilize o método <code>delete()</code> 
                             informando o id da linha desejada ou um array nos padrões do método <code>where()</code>. Por exemplo:
                         </p>
-                        <div>
-                            <img src="./assets/img/models-7.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">$pets_model = new PetsModel();
+// O método delete() retornará true ou false em caso de sucesso ou falha respectivamente
+
+$pets_model->delete(1); //deleta o pet com id 1
+$pets_model->delete(['id_dono' => 7]); //deleta todos os pets do usuário com id 7
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
+                        <!-- <div>
+                            <img src="./assets/img/models-7.webp" class="img-fluid">
+                        </div> -->
                     </div>
                 </section>
             </div>
