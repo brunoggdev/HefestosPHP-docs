@@ -49,6 +49,13 @@ html {
     color: #f0f0f0;
 }
 
+.item-solo{
+    text-decoration: none;
+}
+.item-solo::after{
+    display: none;
+}
+
 .link-lava{
     text-decoration: none;
     color: var(--color-lava-accent);
