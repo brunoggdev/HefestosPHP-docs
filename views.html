@@ -38,6 +38,13 @@
                         Para isso, você pode utilizar condicionais, loops e variaveis normalmente e, ao utilizar a função <code>view()</code>, 
                         esse código será processado e as variáveis inseridas adequadamente.
                     </p>
+                    <p class="m-3 alert alert-secondary">
+                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                        </svg>
+                        Claro, se estiver fazendo uma API, você praticamente não irá utilizar esse recurso, no máximo para configurar templates de email por exemplo.
+                    </p>
                     <ul class="ps-4">
                         <li><a class="link-lava" href="#passando-dados-para-view">Passando dados para view</a></li>
                         <li><a class="link-lava" href="#sintaxe-alternativa-do-PHP">Sintaxe alternativa do PHP</a></li>
@@ -55,10 +62,34 @@
                             Nesse array, a chave será o nome da variável que poderá ser acessada na view com seu devido valor, sendo este de qualquer tipo (string, array, objeto, etc). 
                             Por exemplo, normalmente você irá acessar no seu controller:
                         </p>
-                        <div>
-                            <img src="./assets/img/views-1.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">public function exemplo()
+{
+    $dados = [                  // variáveis disponíveis na view:
+        'id' => 1,              // $id = 1
+        'nome' => 'Bruno',      // $nome = 'Bruno'
+        'ids_pets' => [1,2,3],  // $ids_pets = [1,2,3]
+    ];
+    
+    return view('home', $dados);
+}</code></pre>
+
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
-                        <p class="mt-5">
+                        <!-- <div>
+                            <img src="./assets/img/views-1.webp" class="img-fluid">
+                        </div> -->
+                        <p class="mt-4">
                             Note que, no fim, a função view apenas retorna uma string do seu conteúdo HTML. Isso quer dizer que todas as 
                             operações com strings podem ser utilizadas com seu retorno, como concatenação. Confira <a href="auxiliares.html">Auxiliares</a> para um exemplo interessante.
                         </p>
@@ -69,16 +100,36 @@
                     <div class="p-3">
                         <p>
                             Antes de mais nada, é útil apontar a sintaxe alternativa do PHP. 
-                            Nada mais é que uma sintaxe um pouquinho diferente para tonar o trabalho junto ao HTML mais prático, especialmente para condicionais, loops e exibir dados.
+                            Nada mais é que uma sintaxe um pouquinho diferente para tornar o trabalho junto ao HTML mais prático, especialmente para condicionais, loops e exibir dados.
                         </p>
                         <p>
                             Por exemplo, para simplesmente exibir uma variavel ou resultado de função num elemento html você teria que abrir as tags PHP e utilizar um 'echo' na variavel desejada. 
                             A sintaxe alternativa permite tornar isso um pouco mais limpo:
                         </p>
-                        <div>
-                            <img src="./assets/img/views-2.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-php rounded border-0">// Normal
+&lt;?php echo $variavel ?>
+&lt;?php echo funcaoBacana() ?>
+
+// Sintaxe alternativa
+&lt;?= $variavel ?>
+&lt;?= funcaoBacana() ?></code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
-                        <p class="mt-5">
+                        <!-- <div>
+                            <img src="./assets/img/views-2.webp" class="img-fluid">
+                        </div> -->
+                        <p class="mt-4">
                             Você pode conferir mais sobre a sintaxe alternativa no 
                             <a target="_blank" href="https://www.php.net/manual/pt_BR/control-structures.alternative-syntax.php">site oficial do PHP</a>.
                         </p>
@@ -95,15 +146,50 @@
                         </div> -->
                     </div>
                 </section>
-                <section class="pt-5" id="montando-uma-view">
+                <section class="pt-4" id="montando-uma-view">
                     <h4>Montando uma view</h4>
                     <div class="p-3">
                         <p>
                             Para montar uma view de forma dinâmica você pode fazer algo como:
                         </p>
-                        <div>
-                            <img src="./assets/img/views-4.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-html rounded border-0">&lt;!DOCTYPE html&gt;
+
+&lt;html Lang="pt-br"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt; Pets &lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;!-- Um menú bacana aqui --&gt;
+    &lt;/nav&gt;
+
+    &lt;h1&gt;Olá &lt;?= $nome ?&gt;! &lt;/h1&gt;                           &lt;!-- Ola Bruno! --&gt;
+    &lt;h4&gt;Você possui &lt;?= count($ids_pets)?&gt; pets!&lt;/h4&gt;     &lt;!-- Você possui 3 pets! --&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
+                        <!-- <div>
+                            <img src="./assets/img/views-4.webp" class="img-fluid">
+                        </div> -->
                         <p class="mt-5">
                             Note, porém, que é comum repetirmos código HTML em diversas partes das views, 
                             principalmente o que chamamos de header e footer, então é comum separa-las em "componentes" para reduzir duplicação de código e facilitar manutenção.
@@ -114,7 +200,7 @@
                         </p>
                         <p>
                             Para isso, na pasta Views você encontrará uma outra pasta chamada componentes onde você poderá adicionar os que desejar, 
-                            não só os comuns header e footer mas botões, tabelas e listas ou mesmo seus itens. O que desejar.
+                            não só os comuns header e footer, mas também botões, tabelas e listas ou mesmo seus itens. O que desejar. 
                         </p>
                         <p>
                             Depois, para utilizar os componentes, basta usar <code>comp()</code> ou <code>componente()</code> (confira a pequena diferença)
@@ -123,9 +209,53 @@
                         <p>
                             Também como uma view, um componente é retornado como uma string, permitindo quaisquer operações com ela como um "echo", daí sua utilização:
                         </p>
-                        <div>
-                            <img src="./assets/img/views-5.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-html rounded border-0">&lt;!-- Views/home.php --&gt;
+&lt;?= comp('header') ?&gt;
+    &lt;h1&gt;Olá &lt;?= $nome ?&gt;! &lt;/h1&gt;                           &lt;!-- Ola Bruno! --&gt;
+    &lt;h4&gt;Você possui &lt;?= count($ids_pets)?&gt; pets!&lt;/h4&gt;     &lt;!-- Você possui 3 pets! --&gt;
+&lt;?= comp('footer') ?&gt;
+
+
+
+&lt;!-- Views/componentes/header.php --&gt;
+&lt;!DOCTYPE html&gt;
+
+&lt;html Lang="pt-br"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt; Pets &lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;!-- Um menú bacana aqui --&gt;
+    &lt;/nav&gt;
+
+
+
+&lt;!-- Views/componentes/footer.php --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
+                        <!-- <div>
+                            <img src="./assets/img/views-5.webp" class="img-fluid">
+                        </div> -->
                         <p class="mt-5">
                             Desse modo, por exemplo, o titulo e menú no header serão compartilhados entre todos os arquivos que você o utilizar 
                             e você só precisará fazer alterações em um único arquivo para ser refletido entre todos.
@@ -133,23 +263,62 @@
                         <p>
                             Ainda nesse exemplo, caso quisesse um titulo dinâmico dependendo da view renderizada, poderia passar o titulo desejado para o componente header, algo como:
                         </p>
-                        <div>
-                            <img src="./assets/img/views-6.webp" class="img-fluid">
+                        <div class="position-relative">
+                            <pre><code class="language-html rounded border-0">&lt;!-- Views/home.php --&gt;
+&lt;?= comp('header', ['titulo' => 'Pets']) ?&gt;
+    &lt;h1&gt;Olá &lt;?= $nome ?&gt;! &lt;/h1&gt;                           &lt;!-- Ola Bruno! --&gt;
+    &lt;h4&gt;Você possui &lt;?= count($ids_pets)?&gt; pets!&lt;/h4&gt;     &lt;!-- Você possui 3 pets! --&gt;
+&lt;?= comp('footer') ?&gt;
+
+
+
+&lt;!-- Views/componentes/header.php --&gt;
+&lt;!DOCTYPE html&gt;
+
+&lt;html Lang="pt-br"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt; &lt;?= $titulo ?&gt; &lt;/title&gt;   &lt;!-- Pets --&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;!-- Um menú bacana aqui --&gt;
+    &lt;/nav&gt;
+
+
+
+&lt;!-- Views/componentes/footer.php --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                            <button class="btn btn-outline-secondary position-absolute top-0 end-0 mt-1 me-2 p-0"
+                                    style="padding: 2px 2px 3px 2px!important; border: 0 !important; background: fixed;"
+                                    data-copiar
+                                    title="Copiar"
+                                    >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                                    class="bi bi-clipboard2-fill" viewBox="0 0 16 16">
+                                    <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+                                    <path d="M3.5 1h.585A1.5 1.5 0 0 0 4 1.5V2a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 12 2v-.5q-.001-.264-.085-.5h.585A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1"/>
+                                </svg>
+                            </button>
                         </div>
+                        <!-- <div>
+                            <img src="./assets/img/views-6.webp" class="img-fluid">
+                        </div> -->
                         <p class="mt-5">
-                            Por fim, você possivelmente irá utilizar JavaScript. Pode declarar seu código js 
-                            diretamente numa view para ser exclusivo dela ou no footer para ter disponível em 
-                            todo seu app, provavelmente o caso para bibliotecas como Bootstrap ou jQuery.
+                            Por fim, você possivelmente irá utilizar CSS e JavaScript. Você pode, claro, declarar suas tags style e script 
+                            diretamente numa view para ser exclusivo dela ou no header/footer para estarem disponíveis em todas suas views,
+                            provavelmente o caso para bibliotecas como Bootstrap ou jQuery.
                         </p>
                         <p>
-                            Em cima disso, seu código js pode ser feito numa tag script, sim, mas por vezes você irá separar 
-                            isso em um arquivo .js próprio e então importa-lo na sua view específica ou footer, 
-                            porém isso requer alguns cuidados para funcionar corretamente.
-                        </p>
-                        <p>
-                            Ao importar JavaScript a ordem importa. Por exemplo, importar um arquivo que usa jQuery 
-                            antes de importar a biblioteca não irá funcionar. Além disso, cache também pode vir a ser um problema.
-                            A função <code>importarJS()</code> existe para auxiliar nessa tarefa.
+                            Além disso, pode ser um desafio importar seus próprios arquivos JavaScript e CSS 
+                            por conta de questões como cache e a ordem de importação. Para auxiliar nisso, o Hefestos possui as 
+                            funções auxiliares <a href="auxiliares.html#importar-css">importar_css()</a> e <a href="auxiliares.html#importar-js">importar_js()</a>.
                         </p>
                         <p>
                             Ela irá buscar o arquivo informado na pasta 'public/js/' e, caso encontre, 
@@ -157,11 +326,11 @@
                             <a href="https://www.2fconsultoria.com.br/2019/01/por-como-usar-cache-busting/">cache busting</a>.
                            Além disso, passar 'true' no segundo parâmetro irá atrasar a interpretação desse script. Por exemplo:
                         </p>
-                        <div>
+                        <!-- <div>
                             <img src="./assets/img/views-7.webp" class="img-fluid">
-                        </div>
+                        </div> -->
                         <p class="mt-5">
-                            Note que, assim como <code>view()</code> e <code>componente()</code>, <code>importarJS()</code> 
+                            Note que, assim como <code>view()</code> e <code>componente()</code>, <code>importar_js()</code> 
                             também retorna uma string. Dito isso, confira <a href="auxiliares.html">Auxiliares</a> para uma exemplo interessante de interação entre essas funções.
                         </p>
                     </div>

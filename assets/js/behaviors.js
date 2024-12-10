@@ -79,6 +79,22 @@ setTimeout(() => {
     });
 }, 300);
 
+setTimeout(() => {
+    document.querySelectorAll('code.language-html').forEach(block => {
+        block.innerHTML = block.innerHTML.replace(/&lt;\?=/g, '<span class="hljs-meta">&lt;?=</span>');
+        block.innerHTML = block.innerHTML.replace(/\?&gt;/g, '<span class="hljs-meta">?&gt;</span>');
+        block.innerHTML = block.innerHTML.replace(/\$[^\s()]+/g, match => {
+            return `<span class="hljs-variable">${match}</span>`;
+        });
+        block.innerHTML = block.innerHTML.replace(/(?<=\s)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g, match => {
+            return `<span class="hljs-title function_ invoke__">${match}</span>`;
+        });
+        block.innerHTML = block.innerHTML.replace(/'[^']*'/g, match => {
+            return `<span class="hljs-string">${match}</span>`;
+        });
+    });
+}, 300);
+
 
 document.querySelectorAll('[data-copiar]').forEach(block => {
     block.addEventListener('click', copyToClipboard);
